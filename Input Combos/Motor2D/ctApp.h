@@ -14,22 +14,10 @@ class ctInput;
 class ctRender;
 class ctTextures;
 class ctAudio;
-class ctMainMenu;
+class ctMainScene;
 class ctEntities;
 class ctGui;
 class ctFadeToBlack;
-/*class j1Collider;
-class j1Scene;
-class j1MainMenu;
-class j1Credits;
-class j1Entities;
-class j1Particles;
-class j1Map;
-class j1Language;
-class j1PathFinding;
-class j1Fonts;
-class j1UI;
-class j1FadeToBlack;*/
 
 class ctApp
 {
@@ -104,22 +92,10 @@ public:
 	ctRender*			render = nullptr;
 	ctTextures*			tex = nullptr;
 	ctAudio*			audio = nullptr;
-	ctMainMenu*			main_menu = nullptr;
+	ctMainScene*		main_scene = nullptr;
 	ctEntities*			entities = nullptr;
 	ctGui*				gui = nullptr;
 	ctFadeToBlack*		fadeToBlack = nullptr;
-	/*j1Collider*			collider = nullptr;
-	j1Scene*			scene = nullptr;
-	j1MainMenu*			main_menu = nullptr;
-	j1Credits*			credits = nullptr;
-	j1Map*				map = nullptr;
-	j1PathFinding*		pathfinding = nullptr;
-	j1Entities*			entities = nullptr;
-	j1Language*			languages = nullptr;
-	j1Particles*		particles = nullptr;
-	j1Fonts*			font = nullptr;
-	j1UI*				ui = nullptr;
-	j1FadeToBlack*		fadeToBlack = nullptr;*/
 
 	bool				cap_state = false;
 

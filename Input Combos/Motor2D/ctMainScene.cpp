@@ -8,24 +8,24 @@
 #include "ctWindow.h"
 #include "ctEntities.h"
 
-#include "ctMainMenu.h"
+#include "ctMainScene.h"
 
 #include "ctFadeToBlack.h"
 
 
 
-ctMainMenu::ctMainMenu() : ctModule()
+ctMainScene::ctMainScene() : ctModule()
 {
 	name = "main_menu";
 }
 
 // Destructor
-ctMainMenu::~ctMainMenu()
+ctMainScene::~ctMainScene()
 {}
 
 // Called before render is available
 
-bool ctMainMenu::Awake()
+bool ctMainScene::Awake()
 {
 	LOG("Loading Main Menu");
 	bool ret = true;
@@ -34,9 +34,11 @@ bool ctMainMenu::Awake()
 }
 
 // Called before the first frame
-bool ctMainMenu::Start()
+bool ctMainScene::Start()
 {
 	bool ret = true;
+
+	LOG("Main scene start!");
 
 	/*if (!App->audio->PlayMusic("audio/music/8-bit_Detective.ogg")) {
 		//ret = false;
@@ -47,13 +49,13 @@ bool ctMainMenu::Start()
 }
 
 // Called each loop iteration
-bool ctMainMenu::PreUpdate()
+bool ctMainScene::PreUpdate()
 {
 	return true;
 }
 
 // Called each loop iteration
-bool ctMainMenu::Update(float dt)
+bool ctMainScene::Update(float dt)
 {
 
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
@@ -66,7 +68,7 @@ bool ctMainMenu::Update(float dt)
 }
 
 // Called each loop iteration
-bool ctMainMenu::PostUpdate()
+bool ctMainScene::PostUpdate()
 {
 	bool ret = true;
 
@@ -77,27 +79,27 @@ bool ctMainMenu::PostUpdate()
 }
 
 // Called before quitting
-bool ctMainMenu::CleanUp()
+bool ctMainScene::CleanUp()
 {
 	LOG("Freeing main_menu");
 	
 	return true;
 }
 
-bool ctMainMenu::Load(pugi::xml_node& load)
+bool ctMainScene::Load(pugi::xml_node& load)
 {
 	bool ret = true;
 
 	return ret;
 }
 
-bool ctMainMenu::Save(pugi::xml_node& save) const
+bool ctMainScene::Save(pugi::xml_node& save) const
 {
 	bool ret = true;
 
 	return ret;
 }
 
-void ctMainMenu::OnUITrigger(UIElement* elementTriggered, UI_State ui_state)
+void ctMainScene::OnUITrigger(UIElement* elementTriggered, UI_State ui_state)
 {
 }

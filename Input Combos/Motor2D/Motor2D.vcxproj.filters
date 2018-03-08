@@ -60,9 +60,6 @@
     <ClCompile Include="ctTextures.cpp">
       <Filter>Core\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ctMainMenu.cpp">
-      <Filter>Core\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="ctFadeToBlack.cpp">
       <Filter>Core\Modules</Filter>
     </ClCompile>
@@ -87,8 +84,11 @@
     <ClCompile Include="UILabel.cpp">
       <Filter>Core\Modules\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="ctCombat.cpp">
+    <ClCompile Include="ctMainScene.cpp">
       <Filter>Core\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Core\Modules\Entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,9 +137,6 @@
     <ClInclude Include="ctTextures.h">
       <Filter>Core\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ctMainMenu.h">
-      <Filter>Core\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="ctFadeToBlack.h">
       <Filter>Core\Modules</Filter>
     </ClInclude>
@@ -167,8 +164,11 @@
     <ClInclude Include="UILabel.h">
       <Filter>Core\Modules\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="ctCombat.h">
+    <ClInclude Include="ctMainScene.h">
       <Filter>Core\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Core\Modules\Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

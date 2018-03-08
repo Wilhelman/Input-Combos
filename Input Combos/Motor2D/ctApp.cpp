@@ -9,25 +9,10 @@
 #include "ctRender.h"
 #include "ctTextures.h"
 #include "ctAudio.h"
-#include "ctMainMenu.h"
+#include "ctMainScene.h"
 #include "ctEntities.h"
 #include "ctGui.h"
 #include "ctFadeToBlack.h"
-/*
-#include "j1Scene.h"
-#include "j1MainMenu.h"
-#include "j1Collider.h"
-#include "j1Credits.h"
-#include "j1Map.h"
-#include "j1Entities.h"
-#include "j1Particles.h"
-#include "j1Fonts.h"
-#include "j1Language.h"
-#include "j1UI.h"
-#include "j1Pathfinding.h"
-#include "j1FadeToBlack.h"
-#include "Player.h"
-*/
 
 // Constructor
 ctApp::ctApp(int argc, char* args[]) : argc(argc), args(args)
@@ -43,56 +28,24 @@ ctApp::ctApp(int argc, char* args[]) : argc(argc), args(args)
 	render = new ctRender();
 	tex = new ctTextures();
 	audio = new ctAudio();
-	main_menu = new ctMainMenu();
+	main_scene = new ctMainScene();
 	entities = new ctEntities();
 	gui = new ctGui();
 	fadeToBlack = new ctFadeToBlack();
-	/*scene = new j1Scene();
-	main_menu = new j1MainMenu();
-	credits = new j1Credits();
-	collider = new j1Collider();
-	map = new j1Map();
-	languages = new j1Language();
-	entities = new j1Entities();
-	particles = new j1Particles();
-	font = new j1Fonts();
-	ui = new j1UI();
-	pathfinding = new j1PathFinding();
-	fadeToBlack = new j1FadeToBlack();*/
-
-	//TODO : CHECK ALL TODO'S!!!
-
+	
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 	AddModule(input);
 	AddModule(win);
 	AddModule(tex);
 	AddModule(audio);
-	AddModule(main_menu);
+	AddModule(main_scene);
 	AddModule(entities);
 	AddModule(gui);
 	AddModule(fadeToBlack);
-	
-	/*AddModule(map);
-	AddModule(pathfinding);
-	AddModule(scene);
-	AddModule(languages);
-	AddModule(main_menu);
-	AddModule(credits);
-	AddModule(entities);
-	AddModule(particles);
-	AddModule(font);
-	AddModule(ui);
-	AddModule(collider);
-	AddModule(fadeToBlack);*/
-	
 
 	// render last to swap buffer
 	AddModule(render);
-
-	//disable lvl scene
-	/*scene->active = false;
-	credits->active = false;*/
 
 	PERF_PEEK(ptimer);
 }
@@ -307,20 +260,11 @@ void ctApp::FinishUpdate()
 	double framerate = 1000.0f / perf_timer.ReadMs();
 
 	dt = 1.0f / framerate;
-	
-	std::string godMode;
 
-	/*if (App->entities->GetPlayer() != nullptr) {
-		(App->entities->GetPlayer()->god_mode) ?
-			godMode.create("ON") :
-			godMode.create("OFF");
-	}
-	else*/
-		godMode="Player not reachable";
 
 	static char title[256];
-	sprintf_s(title, 256, "%s - FPS: %.2f Av.FPS: %.2f Last Frame Ms: %u (Cap: %s  Vsync: %s) | GOD MODE: %s",
-		game_title.data(), framerate, avg_fps, last_frame_ms, cap_to_show.data(), vsync_to_show.data(), godMode.data());
+	sprintf_s(title, 256, "%s - FPS: %.2f Av.FPS: %.2f Last Frame Ms: %u (Cap: %s  Vsync: %s)",
+		game_title.data(), framerate, avg_fps, last_frame_ms, cap_to_show.data(), vsync_to_show.data());
 
 	App->win->SetTitle(title);
 
@@ -331,9 +275,7 @@ void ctApp::FinishUpdate()
 // Call modules before each loop iteration
 bool ctApp::PreUpdate()
 {
-		bool ret = true;
-	
-	
+	bool ret = true;
 
 	ctModule* pModule = NULL;
 

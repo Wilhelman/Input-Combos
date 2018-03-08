@@ -3,7 +3,6 @@
 #include "ctApp.h"
 #include "ctWindow.h"
 #include "ctRender.h"
-
 #include "Player.h"
 #include "ctEntities.h"
 //#include "j1FadeToBlack.h"

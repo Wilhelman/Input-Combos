@@ -1,18 +1,18 @@
-#ifndef __ctMAINMENU_H__
-#define __ctMAINMENU_H__
+#ifndef __ctMainScene_H__
+#define __ctMainScene_H__
 
 #include "ctModule.h"
 
 
 
-class ctMainMenu : public ctModule
+class ctMainScene : public ctModule
 {
 public:
 
-	ctMainMenu();
+	ctMainScene();
 
 	// Destructor
-	virtual ~ctMainMenu();
+	virtual ~ctMainScene();
 
 	// Called before render is available
 	bool Awake();
@@ -41,7 +41,14 @@ public:
 private:
 	bool quit_pressed = false;
 
+	SDL_Texture* graphics = nullptr;
+	SDL_Rect ground;
+	SDL_Rect roof;
+	SDL_Rect foreground;
+	SDL_Rect background;
+	ctAnimation water;
+
 };
 
 
-#endif // __ctMAINMENU_H__
+#endif // __ctMainScene_H__
