@@ -9,7 +9,7 @@
 #include "ctRender.h"
 #include "ctTextures.h"
 #include "ctAudio.h"
-#include "ctMainScene.h"
+#include "ctHondaStageScene.h"
 #include "ctEntities.h"
 #include "ctGui.h"
 #include "ctFadeToBlack.h"
@@ -19,16 +19,12 @@ ctApp::ctApp(int argc, char* args[]) : argc(argc), args(args)
 {
 	PERF_START(ptimer);
 
-	want_to_save = want_to_load = all_modules_loaded = false;
-	load_game = "save_game";
-	save_game = "save_game";
-
 	input = new ctInput();
 	win = new ctWindow();
 	render = new ctRender();
 	tex = new ctTextures();
 	audio = new ctAudio();
-	main_scene = new ctMainScene();
+	honda_stage_scene = new ctHondaStageScene();
 	entities = new ctEntities();
 	gui = new ctGui();
 	fadeToBlack = new ctFadeToBlack();
@@ -39,7 +35,7 @@ ctApp::ctApp(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(win);
 	AddModule(tex);
 	AddModule(audio);
-	AddModule(main_scene);
+	AddModule(honda_stage_scene);
 	AddModule(entities);
 	AddModule(gui);
 	AddModule(fadeToBlack);
@@ -178,32 +174,6 @@ pugi::xml_node ctApp::LoadConfig(pugi::xml_document& config_file) const
 	return ret;
 }
 
-// ---------------------------------------------
-pugi::xml_node ctApp::LoadLanguages(pugi::xml_document& language_file) const
-{
-	pugi::xml_node ret;
-
-	pugi::xml_parse_result result = language_file.load_file("languages");
-
-	if (result == NULL)
-		LOG("Could not load xml file config.xml. pugi error: %s", result.description());
-	else
-		ret = language_file.child("languages");
-	return ret;
-}
-
-// ---------------------------------------------
-bool ctApp::LoadSave(pugi::xml_document& save_file) const
-{
-	bool ret = false;
-	pugi::xml_parse_result result = save_file.load_file("save_game");
-
-	if (result == NULL)
-		LOG("Could not load xml file config.xml. pugi error: %s", result.description());
-	else
-		ret = true;
-	return ret;
-}
 
 // ---------------------------------------------
 void ctApp::PrepareUpdate()
@@ -219,14 +189,7 @@ void ctApp::FinishUpdate()
 
 	frame_count++;
 
-	if (want_to_save == true)
-		SavegameNow();
-
-	if (want_to_load == true)
-		LoadGameNow();
-
 	// Framerate calculations --
-
 
 	if (App->render->vsync_state)
 		vsync_to_show = "on";
@@ -378,99 +341,4 @@ const char* ctApp::GetTitle() const
 const char* ctApp::GetOrganization() const
 {
 	return organization.data();
-}
-
-// Load / Save
-void ctApp::LoadGame()
-{
-	// we should be checking if that file actually exist
-	// from the "GetSaveGames" list
-	want_to_load = true;
-}
-
-// ---------------------------------------
-void ctApp::SaveGame() const
-{
-	// we should be checking if that file actually exist
-	// from the "GetSaveGames" list ... should we overwrite ?
-
-	want_to_save = true;
-}
-
-// ---------------------------------------
-void ctApp::GetSaveGames(/*ctList<ctSString>& list_to_fill*/) const
-{
-	// need to add functionality to file_system module for this to work
-}
-
-bool ctApp::LoadGameNow()
-{
-	bool ret = false;
-
-	pugi::xml_document data;
-	pugi::xml_node root;
-
-	pugi::xml_parse_result result = data.load_file(load_game.data());
-
-	if (result != NULL)
-	{
-		LOG("Loading new Game State from %s...", load_game.data());
-
-		root = data.child("game_state");
-
-		std::list<ctModule*>::iterator it = modules.begin();
-		
-		ret = true;
-
-		while (it != modules.end() && ret == true)
-		{
-			ret = (*it)->Load(root.child((*it)->name.data()));
-			it++;
-		}
-
-		data.reset();
-		if (ret == true)
-			LOG("...finished loading");
-		else
-			LOG("...loading process interrupted with error on module %s", (*it) ? (*it)->name.data() : "unknown");
-	}
-	else
-		LOG("Could not parse game state xml file %s. pugi error: %s", load_game.data(), result.description());
-
-	want_to_load = false;
-	return ret;
-}
-
-bool ctApp::SavegameNow() const
-{
-	bool ret = true;
-
-	LOG("Saving Game State to %s...", save_game.data());
-
-	// xml object were we will store all data
-	pugi::xml_document data;
-	pugi::xml_node root;
-
-	root = data.append_child("game_state");
-
-	
-	std::list<ctModule*>::const_iterator it = modules.begin();
-
-	while (it != modules.end() && ret == true)
-	{
-		ret = (*it)->Save(root.append_child((*it)->name.data()));
-		it++;
-	}
-
-	if (ret == true)
-	{
-		data.save_file(save_game.data());
-		LOG("... finished saving", );
-	}
-	else
-		LOG("Save process halted from an error in module %s", *(it) ? (*it)->name.data() : "unknown");
-
-	data.reset();
-	want_to_save = false;
-	return ret;
 }

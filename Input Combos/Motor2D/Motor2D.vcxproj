@@ -16,10 +16,10 @@
     <ClCompile Include="ctEntities.cpp" />
     <ClCompile Include="ctFadeToBlack.cpp" />
     <ClCompile Include="ctGui.cpp" />
+    <ClCompile Include="ctHondaStageScene.cpp" />
     <ClCompile Include="ctInput.cpp" />
     <ClCompile Include="ctLog.cpp" />
     <ClCompile Include="ctMain.cpp" />
-    <ClCompile Include="ctMainScene.cpp" />
     <ClCompile Include="ctPerfTimer.cpp" />
     <ClCompile Include="ctRender.cpp" />
     <ClCompile Include="ctTextures.cpp" />
@@ -41,9 +41,9 @@
     <ClInclude Include="ctEntities.h" />
     <ClInclude Include="ctFadeToBlack.h" />
     <ClInclude Include="ctGui.h" />
+    <ClInclude Include="ctHondaStageScene.h" />
     <ClInclude Include="ctInput.h" />
     <ClInclude Include="ctLog.h" />
-    <ClInclude Include="ctMainScene.h" />
     <ClInclude Include="ctModule.h" />
     <ClInclude Include="ctPerfTimer.h" />
     <ClInclude Include="ctPoint.h" />

@@ -14,7 +14,7 @@ class ctInput;
 class ctRender;
 class ctTextures;
 class ctAudio;
-class ctMainScene;
+class ctHondaStageScene;
 class ctEntities;
 class ctGui;
 class ctFadeToBlack;
@@ -92,7 +92,7 @@ public:
 	ctRender*			render = nullptr;
 	ctTextures*			tex = nullptr;
 	ctAudio*			audio = nullptr;
-	ctMainScene*		main_scene = nullptr;
+	ctHondaStageScene*	honda_stage_scene = nullptr;
 	ctEntities*			entities = nullptr;
 	ctGui*				gui = nullptr;
 	ctFadeToBlack*		fadeToBlack = nullptr;
@@ -109,12 +109,6 @@ private:
 	std::string				organization;
 	std::string				vsync_to_show;
 	std::string				cap_to_show;
-
-	mutable bool		want_to_save = false;
-	bool				want_to_load = false;
-
-	mutable std::string	save_game;
-	std::string				load_game;
 
 	ctPerfTimer			perf_timer;
 	ctTimer				simple_timer;

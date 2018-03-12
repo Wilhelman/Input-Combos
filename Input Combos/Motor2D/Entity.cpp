@@ -1,9 +1,8 @@
 #include "ctApp.h"
 #include "Entity.h"
-#include "ctEntities.h"
 #include "ctRender.h"
 
-Entity::Entity(int x, int y) : position(x, y)
+Entity::Entity(int x, int y, EntityType type) : position(x, y), type(type)
 {
 }
 

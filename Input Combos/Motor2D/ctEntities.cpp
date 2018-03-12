@@ -99,20 +99,6 @@ bool ctEntities::SpawnEntity(int x, int y, EntityType type)
 	return ret;
 }
 
-bool ctEntities::Load(pugi::xml_node& load)
-{
-	bool ret = true;
-
-	return ret;
-}
-
-bool ctEntities::Save(pugi::xml_node& save) const
-{
-	bool ret = true;
-
-	return ret;
-}
-
 Player* ctEntities::GetPlayer() const {
 
 	for (uint i = 0; i < entities.capacity(); ++i)

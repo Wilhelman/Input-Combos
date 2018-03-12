@@ -84,11 +84,11 @@
     <ClCompile Include="UILabel.cpp">
       <Filter>Core\Modules\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="ctMainScene.cpp">
-      <Filter>Core\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Core\Modules\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="ctHondaStageScene.cpp">
+      <Filter>Core\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -164,11 +164,11 @@
     <ClInclude Include="UILabel.h">
       <Filter>Core\Modules\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="ctMainScene.h">
-      <Filter>Core\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Core\Modules\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="ctHondaStageScene.h">
+      <Filter>Core\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -8,8 +8,8 @@
 
 enum EntityType
 {
-	FIGHTER,
-	KOBOLD,
+	PLAYER,
+	OIL_DRUM,
 
 	NO_TYPE
 };
@@ -33,10 +33,6 @@ public:
 	bool PreUpdate();
 
 	bool Update(float dt);
-
-	bool Load(pugi::xml_node&);
-
-	bool Save(pugi::xml_node&) const;
 
 	bool CleanUp();
 
