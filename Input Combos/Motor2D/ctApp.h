@@ -14,7 +14,7 @@ class ctInput;
 class ctRender;
 class ctTextures;
 class ctAudio;
-class ctHondaStageScene;
+class ctKenStageScene;
 class ctEntities;
 class ctGui;
 class ctFadeToBlack;
@@ -92,7 +92,7 @@ public:
 	ctRender*			render = nullptr;
 	ctTextures*			tex = nullptr;
 	ctAudio*			audio = nullptr;
-	ctHondaStageScene*	honda_stage_scene = nullptr;
+	ctKenStageScene*	ken_stage_scene = nullptr;
 	ctEntities*			entities = nullptr;
 	ctGui*				gui = nullptr;
 	ctFadeToBlack*		fadeToBlack = nullptr;

@@ -1,17 +1,17 @@
-#ifndef __ctHondaStageScene_H__
-#define __ctHondaStageScene_H__
+#ifndef __ctKenStageScene_H__
+#define __ctKenStageScene_H__
 
 #include "ctModule.h"
 #include "ctAnimation.h"
 
-class ctHondaStageScene : public ctModule
+class ctKenStageScene : public ctModule
 {
 public:
 
-	ctHondaStageScene();
+	ctKenStageScene();
 
 	// Destructor
-	virtual ~ctHondaStageScene();
+	virtual ~ctKenStageScene();
 
 	// Called before render is available
 	bool Awake(pugi::xml_node& conf);
@@ -39,11 +39,14 @@ public:
 
 private:
 	void LoadAnimation(pugi::xml_node animation_node, ctAnimation* animation);
-	void LoadRect(pugi::xml_node rect_node, SDL_Rect rect);
+	void LoadRect(pugi::xml_node rect_node, SDL_Rect* rect);
 
 private:
 
 	bool quit_pressed = false;
+
+	float foreground_pos = 0.0f;
+	bool forward_foreground = false;
 
 	std::string atlas_name;
 	SDL_Texture* atlas_tex = nullptr;
@@ -58,4 +61,4 @@ private:
 };
 
 
-#endif // __ctHondaStageScene_H__
+#endif // __ctKenStageScene_H__

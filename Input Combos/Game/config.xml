@@ -52,8 +52,8 @@
 			</particle>
 		</spritesheetSource>
 	</particles>
-	<honda_stage>
-		<spritesheetSource name="textures/honda_stage2.png">
+	<ken_stage>
+		<spritesheetSource name="textures/ken_stage.png">
 			<animations>
 				<animation name="flag" speed="0.08" loop="true">
 						<frame x="848" y="208" width="40" height="40" />
@@ -66,11 +66,13 @@
 						<frame x="624" y="144" width="32" height="56" />
 				</animation>
 			</animations>
-			<rect name="ground" x="8" y="391" width="896" height="72"/>
-			<rect name="foreground" x="8" y="24" width="521" height="181"/>
-			<rect name="background" x="72" y="208" width="768" height="176"/>
+			<rects>
+				<rect name="ground" x="8" y="391" width="896" height="72"/>
+				<rect name="foreground" x="8" y="24" width="521" height="181"/>
+				<rect name="background" x="72" y="208" width="768" height="176"/>
+			</rects>
 		</spritesheetSource>
-	</honda_stage>
+	</ken_stage>
 	<file_system>
 		<path>data.zip</path>
 	</file_system>

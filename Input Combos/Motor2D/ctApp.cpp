@@ -9,7 +9,7 @@
 #include "ctRender.h"
 #include "ctTextures.h"
 #include "ctAudio.h"
-#include "ctHondaStageScene.h"
+#include "ctKenStageScene.h"
 #include "ctEntities.h"
 #include "ctGui.h"
 #include "ctFadeToBlack.h"
@@ -24,7 +24,7 @@ ctApp::ctApp(int argc, char* args[]) : argc(argc), args(args)
 	render = new ctRender();
 	tex = new ctTextures();
 	audio = new ctAudio();
-	honda_stage_scene = new ctHondaStageScene();
+	ken_stage_scene = new ctKenStageScene();
 	entities = new ctEntities();
 	gui = new ctGui();
 	fadeToBlack = new ctFadeToBlack();
@@ -35,7 +35,7 @@ ctApp::ctApp(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(win);
 	AddModule(tex);
 	AddModule(audio);
-	AddModule(honda_stage_scene);
+	AddModule(ken_stage_scene);
 	AddModule(entities);
 	AddModule(gui);
 	AddModule(fadeToBlack);

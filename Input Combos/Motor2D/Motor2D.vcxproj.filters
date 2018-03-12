@@ -87,7 +87,7 @@
     <ClCompile Include="Player.cpp">
       <Filter>Core\Modules\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="ctHondaStageScene.cpp">
+    <ClCompile Include="ctKenStageScene.cpp">
       <Filter>Core\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -167,7 +167,7 @@
     <ClInclude Include="Player.h">
       <Filter>Core\Modules\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="ctHondaStageScene.h">
+    <ClInclude Include="ctKenStageScene.h">
       <Filter>Core\Scenes</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,8 +5,7 @@
 #include "ctRender.h"
 #include "Player.h"
 #include "ctEntities.h"
-//#include "j1FadeToBlack.h"
-//#include "j1MainMenu.h"
+#include "ctInput.h"
 
 #define VSYNC true
 
@@ -81,16 +80,25 @@ bool ctRender::Update(float dt)
 	uint winWidth, winHeight;
 
 	App->win->GetWindowSize(winWidth, winHeight);
-
+	/*
 	if (App->entities->active && App->entities->GetPlayer() != nullptr) {
 		camera.x = (App->entities->GetPlayer()->position.x);
 		camera.y = (App->entities->GetPlayer()->position.y);
-	}
-	else
-	{
-		camera.x = last_camera.x;
-		camera.y = last_camera.y;
-	}
+	}*/
+
+	int speed = 3;
+
+	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+		camera.y += speed;
+
+	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+		camera.y -= speed;
+
+	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
+		camera.x += speed;
+
+	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
+		camera.x -= speed;
 
 	LOG("Camera pos x: %i pos y: %i", camera.x, camera.y);
 
@@ -115,19 +123,12 @@ bool ctRender::CleanUp()
 // Load Game State
 bool ctRender::Load(pugi::xml_node& data)
 {
-	/*camera.x = data.child("camera").attribute("x").as_int();
-	camera.y = data.child("camera").attribute("y").as_int();*/
-
 	return true;
 }
 
 // Save Game State
 bool ctRender::Save(pugi::xml_node& data) const
 {
-	/*pugi::xml_node cam = data.append_child("camera");
-
-	cam.append_attribute("x") = camera.x;
-	cam.append_attribute("y") = camera.y;*/
 
 	return true;
 }

@@ -8,26 +8,26 @@
 #include "ctWindow.h"
 #include "ctEntities.h"
 
-#include "ctHondaStageScene.h"
+#include "ctKenStageScene.h"
 
 #include "ctFadeToBlack.h"
 
 
 
-ctHondaStageScene::ctHondaStageScene() : ctModule()
+ctKenStageScene::ctKenStageScene() : ctModule()
 {
-	name = "honda_stage";
+	name = "ken_stage";
 }
 
 // Destructor
-ctHondaStageScene::~ctHondaStageScene()
+ctKenStageScene::~ctKenStageScene()
 {}
 
 // Called before render is available
 
-bool ctHondaStageScene::Awake(pugi::xml_node& conf)
+bool ctKenStageScene::Awake(pugi::xml_node& conf)
 {
-	LOG("Loading HONDA STAGE");
+	LOG("Loading KEN STAGE");
 	bool ret = true;
 
 	atlas_name = conf.child("spritesheetSource").attribute("name").as_string();
@@ -52,52 +52,73 @@ bool ctHondaStageScene::Awake(pugi::xml_node& conf)
 		std::string tmp(rects.attribute("name").as_string());
 
 		if (tmp == "ground")
-			LoadRect(rects, ground);
+			LoadRect(rects, &ground);
 		else if (tmp == "foreground")
-			LoadRect(rects, foreground);
+			LoadRect(rects, &foreground);
 		else if (tmp == "background")
-			LoadRect(rects, background);
+			LoadRect(rects, &background);
 	}
 
 	return ret;
 }
 
 // Called before the first frame
-bool ctHondaStageScene::Start()
+bool ctKenStageScene::Start()
 {
 	bool ret = true;
 
-	LOG("HONDA STAGE start!");
+	LOG("KEN STAGE start!");
 
-	if (!App->audio->PlayMusic("audio/music/honda.ogg")) {
+	if (!App->audio->PlayMusic("audio/music/ken.ogg")) {
 		ret = false;
-		LOG("Error playing music in ctHondaStageScene Start");
+		LOG("Error playing music in ctKenStageScene Start");
 	}
+
+	atlas_tex = App->tex->Load(atlas_name.c_str());
+	if (atlas_tex == nullptr)
+		ret = false;
 
 	return ret;
 }
 
 // Called each loop iteration
-bool ctHondaStageScene::PreUpdate()
+bool ctKenStageScene::PreUpdate()
 {
 	return true;
 }
 
 // Called each loop iteration
-bool ctHondaStageScene::Update(float dt)
+bool ctKenStageScene::Update(float dt)
 {
 
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		this->quit_pressed = true;
 
-	//if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && App->fadeToBlack->FadeIsOver())
-	//App->fadeToBlack->FadeToBlackBetweenModules(this, this, 1.0f);
+
+	// Calculate boat Y position -----------------------------
+	if (foreground_pos < -6.0f)
+		forward_foreground = false;
+	else if (foreground_pos > 0.0f)
+		forward_foreground = true;
+
+	if (forward_foreground)
+		foreground_pos -= 0.02f;
+	else
+		foreground_pos += 0.02f;
+	
+	// Draw everything --------------------------------------
+	App->render->Blit(atlas_tex, 0, 0, &background, 0.75f); // sea and sky
+	App->render->Blit(atlas_tex, 560, 8, &(flag.GetCurrentFrame()), 0.75f); // flag animation
+	App->render->Blit(atlas_tex, 0, (int)foreground_pos, &foreground, 0.92f);// ship
+	App->render->Blit(atlas_tex, 192, 104 + (int)foreground_pos, &(girl.GetCurrentFrame()), 0.92f); // girl animation
+
+	App->render->Blit(atlas_tex, 0, 170, &ground);
 
 	return true;
 }
 
 // Called each loop iteration
-bool ctHondaStageScene::PostUpdate()
+bool ctKenStageScene::PostUpdate()
 {
 	bool ret = true;
 
@@ -108,32 +129,32 @@ bool ctHondaStageScene::PostUpdate()
 }
 
 // Called before quitting
-bool ctHondaStageScene::CleanUp()
+bool ctKenStageScene::CleanUp()
 {
-	LOG("Freeing HONDA STAGE");
+	LOG("Freeing KEN STAGE");
 
 	return true;
 }
 
-bool ctHondaStageScene::Load(pugi::xml_node& load)
+bool ctKenStageScene::Load(pugi::xml_node& load)
 {
 	bool ret = true;
 
 	return ret;
 }
 
-bool ctHondaStageScene::Save(pugi::xml_node& save) const
+bool ctKenStageScene::Save(pugi::xml_node& save) const
 {
 	bool ret = true;
 
 	return ret;
 }
 
-void ctHondaStageScene::OnUITrigger(UIElement* elementTriggered, UI_State ui_state)
+void ctKenStageScene::OnUITrigger(UIElement* elementTriggered, UI_State ui_state)
 {
 }
 
-void ctHondaStageScene::LoadAnimation(pugi::xml_node animation_node, ctAnimation* animation)
+void ctKenStageScene::LoadAnimation(pugi::xml_node animation_node, ctAnimation* animation)
 {
 	bool ret = true;
 
@@ -142,4 +163,12 @@ void ctHondaStageScene::LoadAnimation(pugi::xml_node animation_node, ctAnimation
 
 	animation->speed = animation_node.attribute("speed").as_float();
 	animation->loop = animation_node.attribute("loop").as_bool();
+}
+
+void ctKenStageScene::LoadRect(pugi::xml_node rect_node, SDL_Rect* rect)
+{
+	rect->x = rect_node.attribute("x").as_float();
+	rect->y = rect_node.attribute("y").as_float();
+	rect->w = rect_node.attribute("width").as_float();
+	rect->h = rect_node.attribute("height").as_float();
 }
