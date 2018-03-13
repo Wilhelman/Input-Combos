@@ -23,14 +23,14 @@
 		<player>
 			<fxPlayerJump name="audio/fx/jump_fx.wav" />
 			<animations>
-				<animation name="idle" speed="0.2" loop="true">
+				<animation name="idle" speed="3.5" loop="true">
 					<frame x="7" y="14" width="60" height="90" />
 					<frame x="95" y="15" width="60" height="89" />
 					<frame x="185" y="14" width="60" height="90" />
 					<frame x="276" y="11" width="60" height="93" />
 					<frame x="366" y="12" width="60" height="92" />
 				</animation>
-				<animation name="forward" speed="0.1" loop="true">
+				<animation name="forward" speed="3.1" loop="true">
 					<frame x="78" y="131" width="60" height="88" />
 					<frame x="132" y="128" width="64" height="92" />
 					<frame x="259" y="128" width="63" height="90" />
@@ -55,36 +55,36 @@
 	<ken_stage>
 		<spritesheetSource name="textures/ken_stage.png">
 			<animations>
-				<animation name="flag" speed="0.08" loop="true">
+				<animation name="flag" speed="4.5" loop="true">
 						<frame x="848" y="208" width="40" height="40" />
 						<frame x="848" y="256" width="40" height="40" />
 						<frame x="848" y="304" width="40" height="40" />
 				</animation>
-				<animation name="girl" speed="0.05" loop="true">
+				<animation name="girl" speed="4.0" loop="true">
 						<frame x="624" y="16" width="32" height="56" />
 						<frame x="624" y="80" width="32" height="56" />
 						<frame x="624" y="144" width="32" height="56" />
 				</animation>
-				<animation name="two_guys" speed="0.05" loop="true">
+				<animation name="two_guys" speed="4.7" loop="true">
 						<frame x="552" y="8" width="64" height="64" />
 						<frame x="552" y="72" width="64" height="64" />
 						<frame x="552" y="136" width="64" height="64" />
 				</animation>
-				<animation name="green_guy" speed="0.05" loop="true">
+				<animation name="green_guy" speed="4.5" loop="true">
 						<frame x="664" y="16" width="32" height="56" />
 						<frame x="664" y="80" width="32" height="56" />
 				</animation>
-				<animation name="blue_guy" speed="0.05" loop="true">
+				<animation name="blue_guy" speed="4.1" loop="true">
 						<frame x="704" y="16" width="48" height="56" />
 						<frame x="704" y="80" width="48" height="56" />
 						<frame x="704" y="144" width="48" height="56" />
 				</animation>
-				<animation name="fedora_guy" speed="0.05" loop="true">
+				<animation name="fedora_guy" speed="4.6" loop="true">
 						<frame x="760" y="16" width="40" height="40" />
 						<frame x="760" y="64" width="40" height="40" />
 						<frame x="760" y="112" width="40" height="40" />
 				</animation>
-				<animation name="pink_guy" speed="0.05" loop="true">
+				<animation name="pink_guy" speed="4.2" loop="true">
 						<frame x="808" y="24" width="48" height="32" />
 						<frame x="808" y="72" width="48" height="32" />
 						<frame x="808" y="120" width="48" height="32" />

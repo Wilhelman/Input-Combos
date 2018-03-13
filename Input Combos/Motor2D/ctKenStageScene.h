@@ -41,6 +41,9 @@ private:
 	void LoadAnimation(pugi::xml_node animation_node, ctAnimation* animation);
 	void LoadRect(pugi::xml_node rect_node, SDL_Rect* rect);
 
+	void SetSceneAnimationsSpeed(float dt);
+	void SetEntitiesSpeed(float dt);
+
 private:
 
 	bool quit_pressed = false;
@@ -62,6 +65,11 @@ private:
 	ctAnimation blue_guy = ctAnimation();
 	ctAnimation fedora_guy = ctAnimation();
 	ctAnimation pink_guy = ctAnimation();
+
+	//animations velocity
+	uint girl_vel = 0u, flag_vel = 0u, two_guys_vel = 0u, green_guy_vel = 0u, blue_guy_vel = 0u, fedora_guy_vel = 0u, pink_guy_vel = 0u;
+
+	bool key_speed = false;
 
 };
 

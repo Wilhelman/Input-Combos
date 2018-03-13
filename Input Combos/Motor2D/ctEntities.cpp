@@ -6,9 +6,7 @@
 #include "ctAudio.h"
 #include "ctWindow.h"
 #include "ctLog.h"
-//#include "ctMap.h"
 #include "ctFadeToBlack.h"
-//#include "j1Scene.h"
 
 #include "Player.h"
 
@@ -54,14 +52,26 @@ bool ctEntities::Start()
 
 bool ctEntities::PreUpdate()
 {
-
+	for (int i = 0; i < entities.capacity(); i++) {
+		if (entities[i]->to_destroy) {
+			delete(entities[i]);
+			entities[i] = nullptr;
+			entities.erase(entities.cbegin() + i);
+			entities.shrink_to_fit();
+		}
+	}
 	return true;
 }
 
 // Called before render is available
 bool ctEntities::Update(float dt)
 {
-	
+
+	for (int i = 0; i < entities.capacity(); i++)
+		if (entities.at(i) != nullptr) entities[i]->Update(dt);
+
+	for (int i = 0; i < entities.capacity(); i++)
+		if (entities.at(i) != nullptr) entities[i]->Draw(entity_sprites);
 
 	return true;
 }

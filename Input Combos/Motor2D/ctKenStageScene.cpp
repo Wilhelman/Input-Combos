@@ -88,6 +88,8 @@ bool ctKenStageScene::Start()
 	if (atlas_tex == nullptr)
 		ret = false;
 
+	App->entities->SpawnEntity(100, 210, PLAYER);
+
 	return ret;
 }
 
@@ -100,6 +102,14 @@ bool ctKenStageScene::PreUpdate()
 // Called each loop iteration
 bool ctKenStageScene::Update(float dt)
 {
+
+	if (dt > 0)
+	{
+		if (!key_speed)
+			SetEntitiesSpeed(dt);
+
+		SetSceneAnimationsSpeed(dt);
+	}
 
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		this->quit_pressed = true;
@@ -125,7 +135,7 @@ bool ctKenStageScene::Update(float dt)
 	App->render->Blit(atlas_tex, 224, 104 + (int)foreground_pos, &(green_guy.GetCurrentFrame()), 0.92f); // green_guy animation
 	App->render->Blit(atlas_tex, 288, 96 + (int)foreground_pos, &(blue_guy.GetCurrentFrame()), 0.92f); // blue_guy animation
 	App->render->Blit(atlas_tex, 86, 24 + (int)foreground_pos, &(fedora_guy.GetCurrentFrame()), 0.92f); // fedora_guy animation
-	App->render->Blit(atlas_tex, 86, 24 + (int)foreground_pos, &(pink_guy.GetCurrentFrame()), 0.92f); // pink_guy animation
+	App->render->Blit(atlas_tex, 130, 24 + (int)foreground_pos, &(pink_guy.GetCurrentFrame()), 0.92f); // pink_guy animation
 	App->render->Blit(atlas_tex, 0, 170, &ground); //ground
 
 	return true;
@@ -185,4 +195,28 @@ void ctKenStageScene::LoadRect(pugi::xml_node rect_node, SDL_Rect* rect)
 	rect->y = rect_node.attribute("y").as_float();
 	rect->w = rect_node.attribute("width").as_float();
 	rect->h = rect_node.attribute("height").as_float();
+}
+
+void ctKenStageScene::SetSceneAnimationsSpeed(float dt)
+{
+	girl.speed = girl_vel * dt;
+	flag.speed = flag_vel * dt;
+	two_guys.speed = two_guys_vel * dt;;
+	green_guy.speed = green_guy_vel * dt;;
+	blue_guy.speed = blue_guy_vel * dt;;
+	fedora_guy.speed = fedora_guy_vel * dt;;
+	pink_guy.speed = pink_guy_vel * dt;;
+}
+
+void ctKenStageScene::SetEntitiesSpeed(float dt)
+{
+	girl_vel = girl.speed;
+	flag_vel = flag.speed;
+	two_guys_vel = two_guys.speed;
+	green_guy_vel = green_guy.speed;
+	blue_guy_vel = blue_guy.speed;
+	fedora_guy_vel = fedora_guy.speed;
+	pink_guy_vel = pink_guy.speed;
+
+	key_speed = true;
 }

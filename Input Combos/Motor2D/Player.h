@@ -26,9 +26,6 @@ private:
 	//player state
 	PlayerState current_state = PlayerState::ST_IDLE;
 
-	//playerSoundEffects
-	uint hadouken_fx = 0u;
-
 	//animations
 	ctAnimation idle = ctAnimation();
 	ctAnimation forward = ctAnimation();
@@ -42,6 +39,7 @@ private:
 
 	void SetPlayerAnimationsSpeed(float dt);
 	void SetEntitiesSpeed(float dt);
+	void LoadAnimation(pugi::xml_node animation_node, ctAnimation* animation);
 
 public:
 
