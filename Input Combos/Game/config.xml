@@ -12,7 +12,7 @@
 	</ui>
 	<window>
 		<resolution width="1024" height="768" scale="3" />
-		<fullscreen value="false" />
+		<fullscreen value="true" />
 		<borderless value="false" />
 		<resizable value="false" />
 		<fullscreen_window value="false" />
@@ -24,18 +24,19 @@
 			<fxPlayerJump name="audio/fx/jump_fx.wav" />
 			<animations>
 				<animation name="idle" speed="3.5" loop="true">
-					<frame x="7" y="14" width="60" height="90" />
-					<frame x="95" y="15" width="60" height="89" />
-					<frame x="185" y="14" width="60" height="90" />
-					<frame x="276" y="11" width="60" height="93" />
-					<frame x="366" y="12" width="60" height="92" />
+					<frame x="7" y="11" width="61" height="93" />
+					<frame x="93" y="11" width="61" height="93" />
+					<frame x="183" y="11" width="61" height="93" />
+					<frame x="277" y="11" width="61" height="93" />
+					<frame x="366" y="11" width="61" height="93" />
 				</animation>
 				<animation name="forward" speed="3.1" loop="true">
-					<frame x="78" y="131" width="60" height="88" />
-					<frame x="132" y="128" width="64" height="92" />
-					<frame x="259" y="128" width="63" height="90" />
-					<frame x="352" y="128" width="54" height="91" />
-					<frame x="432" y="131" width="50" height="89" />
+					<frame x="4" y="128" width="64" height="92" />
+					<frame x="74" y="128" width="64" height="92" />
+					<frame x="162" y="128" width="64" height="92" />
+					<frame x="258" y="128" width="64" height="92" />
+					<frame x="344" y="131" width="64" height="92" />
+					<frame x="422" y="131" width="64" height="92" />
 				</animation>
 			</animations>
 		</player>
