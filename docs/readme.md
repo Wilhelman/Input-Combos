@@ -7,10 +7,14 @@ subject Project 2, under supervision of lecturer
 
 ## **Intro to the problem** 
 
-An input combo system can vary greatly from one videogame to another. That's why we have not established a fixed system to follow when we're developing a system for our videogame.
-In this guide we will investigate about the input combos system that some videogames have developed, we will discuss the different techniques that can be applied and, finally, we will make step by step our input system combo.
+An input combo system can vary greatly from one video game to another. That's why we have not established a fixed system to follow when we're developing a system for our video game.
+In this guide we will investigate about the input combos system that some video games have developed, we will discuss the different techniques that can be applied and, finally, we will make step by step our input system combo.
 
 ## Different approaches by different games
+
+Let's analyze some games that use a input combo system significantly different between them. In this way we can distinguish some key parts of the system more easily.
+
+# Heavy Rain
 
 use animated gifs when possible
 
