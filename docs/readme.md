@@ -14,7 +14,7 @@ In this guide we will investigate about the input combos system that some video 
 
 Let's analyze some games that use a input combo system significantly different between them. In this way we can distinguish some key parts of the system more easily.
 
-# Heavy Rain
+### Heavy Rain
 
 ![Heavy Rain Example](images/heavy_rain_example.gif)
 
