@@ -11,6 +11,7 @@ class Player : public Entity
 	{
 		ST_IDLE,
 		ST_FORWARD,
+		ST_BACKWARD,
 		ST_HADOKEN,
 
 		ST_UNKNOWN
@@ -33,7 +34,7 @@ private:
 	ctAnimation hadoken = ctAnimation();
 
 	//animations velocity
-	uint idle_vel = 0u, forward_vel = 0u, hadoken_vel = 0u;
+	uint idle_vel = 0u, forward_vel = 0u, backward_vel = 0u, hadoken_vel = 0u;
 
 private:
 

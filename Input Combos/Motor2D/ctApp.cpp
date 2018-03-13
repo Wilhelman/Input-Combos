@@ -12,6 +12,7 @@
 #include "ctKenStageScene.h"
 #include "ctEntities.h"
 #include "ctGui.h"
+#include "ctFonts.h"
 #include "ctFadeToBlack.h"
 
 // Constructor
@@ -27,6 +28,7 @@ ctApp::ctApp(int argc, char* args[]) : argc(argc), args(args)
 	ken_stage_scene = new ctKenStageScene();
 	entities = new ctEntities();
 	gui = new ctGui();
+	fonts = new ctFonts();
 	fadeToBlack = new ctFadeToBlack();
 	
 	// Ordered for awake / Start / Update
@@ -38,6 +40,7 @@ ctApp::ctApp(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(ken_stage_scene);
 	AddModule(entities);
 	AddModule(gui);
+	AddModule(fonts);
 	AddModule(fadeToBlack);
 
 	// render last to swap buffer

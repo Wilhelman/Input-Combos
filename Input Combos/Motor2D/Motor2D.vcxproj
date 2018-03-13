@@ -15,6 +15,7 @@
     <ClCompile Include="ctAudio.cpp" />
     <ClCompile Include="ctEntities.cpp" />
     <ClCompile Include="ctFadeToBlack.cpp" />
+    <ClCompile Include="ctFonts.cpp" />
     <ClCompile Include="ctGui.cpp" />
     <ClCompile Include="ctKenStageScene.cpp" />
     <ClCompile Include="ctInput.cpp" />
@@ -40,6 +41,7 @@
     <ClInclude Include="ctDefs.h" />
     <ClInclude Include="ctEntities.h" />
     <ClInclude Include="ctFadeToBlack.h" />
+    <ClInclude Include="ctFonts.h" />
     <ClInclude Include="ctGui.h" />
     <ClInclude Include="ctKenStageScene.h" />
     <ClInclude Include="ctInput.h" />

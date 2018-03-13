@@ -57,8 +57,11 @@ void Player::Update(float dt)
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-		position.x += 1;
+		position.x += 2;
 		this->current_state = PlayerState::ST_FORWARD;
+	}else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+		position.x -= 2;
+		this->current_state = PlayerState::ST_BACKWARD;
 	}
 
 	switch (current_state)
@@ -67,6 +70,9 @@ void Player::Update(float dt)
 		animation = &idle;
 		break;
 	case Player::ST_FORWARD:
+		animation = &forward;
+		break;
+	case Player::ST_BACKWARD:
 		animation = &forward;
 		break;
 	case Player::ST_HADOKEN:
@@ -82,6 +88,7 @@ void Player::SetPlayerAnimationsSpeed(float dt)
 {
 	idle.speed = idle_vel * dt;
 	forward.speed = forward_vel * dt;
+	backward.speed = backward_vel * dt;
 	hadoken.speed = hadoken_vel * dt;;
 }
 
@@ -89,6 +96,7 @@ void Player::SetEntitiesSpeed(float dt)
 {
 	idle_vel = idle.speed;
 	forward_vel = forward.speed;
+	backward_vel = backward.speed;
 	hadoken_vel = hadoken.speed;
 
 	key_entities_speed = true;

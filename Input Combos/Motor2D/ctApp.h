@@ -17,6 +17,7 @@ class ctAudio;
 class ctKenStageScene;
 class ctEntities;
 class ctGui;
+class ctFonts;
 class ctFadeToBlack;
 
 class ctApp
@@ -50,18 +51,8 @@ public:
 	const char* GetTitle() const;
 	const char* GetOrganization() const;
 
-	void LoadGame();
-	void SaveGame() const;
-	void GetSaveGames(/*ctList<ctSString>& list_to_fill*/) const;
-
 	// Load config file
 	pugi::xml_node LoadConfig(pugi::xml_document&) const;
-
-	// Load save file
-	bool LoadSave(pugi::xml_document&) const;
-
-	// Load languages file
-	pugi::xml_node LoadLanguages(pugi::xml_document&) const;
 
 private:
 
@@ -80,10 +71,6 @@ private:
 	// Call modules after each loop iteration
 	bool PostUpdate();
 
-	// Load / Save
-	bool LoadGameNow();
-	bool SavegameNow() const;
-
 public:
 
 	// Modules
@@ -95,6 +82,7 @@ public:
 	ctKenStageScene*	ken_stage_scene = nullptr;
 	ctEntities*			entities = nullptr;
 	ctGui*				gui = nullptr;
+	ctFonts*			fonts = nullptr;
 	ctFadeToBlack*		fadeToBlack = nullptr;
 
 	bool				cap_state = false;

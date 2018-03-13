@@ -49,8 +49,8 @@ bool ctRender::Awake(pugi::xml_node& config)
 	{
 		camera.w = App->win->screen_surface->w;
 		camera.h = App->win->screen_surface->h;
-		camera.x = 0;
-		camera.y = 0;
+		camera.x = -1173;
+		camera.y = -21;
 	}
 
 	return ret;
@@ -62,8 +62,6 @@ bool ctRender::Start()
 	LOG("render start");
 	// back background
 	SDL_RenderGetViewport(renderer, &viewport);
-	last_camera.x = 0;
-	last_camera.y = 0;
 	return true;
 }
 
@@ -80,12 +78,8 @@ bool ctRender::Update(float dt)
 	uint winWidth, winHeight;
 
 	App->win->GetWindowSize(winWidth, winHeight);
-	/*
-	if (App->entities->active && App->entities->GetPlayer() != nullptr) {
-		camera.x = (App->entities->GetPlayer()->position.x);
-		camera.y = (App->entities->GetPlayer()->position.y);
-	}*/
 
+	/*
 	int speed = 3;
 
 	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
@@ -98,9 +92,9 @@ bool ctRender::Update(float dt)
 		camera.x += speed;
 
 	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-		camera.x -= speed;
+		camera.x -= speed;*/
 
-	LOG("Camera pos x: %i pos y: %i", camera.x, camera.y);
+	//LOG("Camera pos x: %i pos y: %i", camera.x, camera.y);
 
 	return true;
 }

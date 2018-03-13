@@ -3,6 +3,7 @@
 
 #include "ctModule.h"
 #include "ctAnimation.h"
+#include "ctGui.h"
 
 class ctKenStageScene : public ctModule
 {
@@ -58,8 +59,9 @@ private:
 	SDL_Rect foreground = { 0,0,0,0 };
 	SDL_Rect background = { 0,0,0,0 };
 
-	ctAnimation girl = ctAnimation();
+	//animations
 	ctAnimation flag = ctAnimation();
+	ctAnimation girl = ctAnimation();
 	ctAnimation two_guys = ctAnimation();
 	ctAnimation green_guy = ctAnimation();
 	ctAnimation blue_guy = ctAnimation();
@@ -70,6 +72,13 @@ private:
 	uint girl_vel = 0u, flag_vel = 0u, two_guys_vel = 0u, green_guy_vel = 0u, blue_guy_vel = 0u, fedora_guy_vel = 0u, pink_guy_vel = 0u;
 
 	bool key_speed = false;
+
+	UIElement* helper_01 = nullptr;
+	UIElement* helper_02 = nullptr;
+	UIElement* helper_03 = nullptr;
+	UIElement* helper_04 = nullptr;
+	UIElement* helper_05 = nullptr;
+	UIElement* helper_06 = nullptr;
 
 };
 

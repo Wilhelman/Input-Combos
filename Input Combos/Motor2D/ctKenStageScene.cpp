@@ -88,7 +88,9 @@ bool ctKenStageScene::Start()
 	if (atlas_tex == nullptr)
 		ret = false;
 
-	App->entities->SpawnEntity(100, 210, PLAYER);
+	App->entities->SpawnEntity(450, 210, PLAYER);
+
+	//helper_01 = App->gui->AddUILabel(450, 210, "TODO 01", { 255,0,0,255 }, nullptr);
 
 	return ret;
 }
@@ -113,7 +115,6 @@ bool ctKenStageScene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		this->quit_pressed = true;
-
 
 	// Calculate boat Y position -----------------------------
 	if (foreground_pos < -6.0f)

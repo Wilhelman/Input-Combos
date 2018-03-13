@@ -12,7 +12,7 @@
 	</ui>
 	<window>
 		<resolution width="1024" height="768" scale="3" />
-		<fullscreen value="true" />
+		<fullscreen value="false" />
 		<borderless value="false" />
 		<resizable value="false" />
 		<fullscreen_window value="false" />
@@ -30,13 +30,21 @@
 					<frame x="277" y="11" width="61" height="93" />
 					<frame x="366" y="11" width="61" height="93" />
 				</animation>
-				<animation name="forward" speed="3.1" loop="true">
+				<animation name="forward" speed="5.1" loop="true">
 					<frame x="4" y="128" width="64" height="92" />
 					<frame x="74" y="128" width="64" height="92" />
 					<frame x="162" y="128" width="64" height="92" />
 					<frame x="258" y="128" width="64" height="92" />
 					<frame x="344" y="131" width="64" height="92" />
 					<frame x="422" y="131" width="64" height="92" />
+				</animation>
+				<animation name="backward" speed="5.1" loop="true">
+					<frame x="422" y="131" width="64" height="92" />
+					<frame x="344" y="131" width="64" height="92" />
+					<frame x="258" y="128" width="64" height="92" />
+					<frame x="162" y="128" width="64" height="92" />
+					<frame x="74" y="128" width="64" height="92" />
+					<frame x="4" y="128" width="64" height="92" />
 				</animation>
 			</animations>
 		</player>
