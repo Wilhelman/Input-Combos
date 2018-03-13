@@ -57,6 +57,11 @@ private:
 
 	ctAnimation girl = ctAnimation();
 	ctAnimation flag = ctAnimation();
+	ctAnimation two_guys = ctAnimation();
+	ctAnimation green_guy = ctAnimation();
+	ctAnimation blue_guy = ctAnimation();
+	ctAnimation fedora_guy = ctAnimation();
+	ctAnimation pink_guy = ctAnimation();
 
 };
 

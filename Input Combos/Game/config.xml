@@ -65,6 +65,30 @@
 						<frame x="624" y="80" width="32" height="56" />
 						<frame x="624" y="144" width="32" height="56" />
 				</animation>
+				<animation name="two_guys" speed="0.05" loop="true">
+						<frame x="552" y="8" width="64" height="64" />
+						<frame x="552" y="72" width="64" height="64" />
+						<frame x="552" y="136" width="64" height="64" />
+				</animation>
+				<animation name="green_guy" speed="0.05" loop="true">
+						<frame x="664" y="16" width="32" height="56" />
+						<frame x="664" y="80" width="32" height="56" />
+				</animation>
+				<animation name="blue_guy" speed="0.05" loop="true">
+						<frame x="704" y="16" width="48" height="56" />
+						<frame x="704" y="80" width="48" height="56" />
+						<frame x="704" y="144" width="48" height="56" />
+				</animation>
+				<animation name="fedora_guy" speed="0.05" loop="true">
+						<frame x="760" y="16" width="40" height="40" />
+						<frame x="760" y="64" width="40" height="40" />
+						<frame x="760" y="112" width="40" height="40" />
+				</animation>
+				<animation name="pink_guy" speed="0.05" loop="true">
+						<frame x="808" y="24" width="48" height="32" />
+						<frame x="808" y="72" width="48" height="32" />
+						<frame x="808" y="120" width="48" height="32" />
+				</animation>
 			</animations>
 			<rects>
 				<rect name="ground" x="8" y="391" width="896" height="72"/>

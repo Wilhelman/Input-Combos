@@ -43,6 +43,16 @@ bool ctKenStageScene::Awake(pugi::xml_node& conf)
 			LoadAnimation(animations, &flag);
 		else if (tmp == "girl")
 			LoadAnimation(animations, &girl);
+		else if (tmp == "two_guys")
+			LoadAnimation(animations, &two_guys);
+		else if (tmp == "green_guy")
+			LoadAnimation(animations, &green_guy);
+		else if (tmp == "blue_guy")
+			LoadAnimation(animations, &blue_guy);
+		else if (tmp == "fedora_guy")
+			LoadAnimation(animations, &fedora_guy);
+		else if (tmp == "pink_guy")
+			LoadAnimation(animations, &pink_guy);
 
 	}
 
@@ -111,8 +121,12 @@ bool ctKenStageScene::Update(float dt)
 	App->render->Blit(atlas_tex, 560, 8, &(flag.GetCurrentFrame()), 0.75f); // flag animation
 	App->render->Blit(atlas_tex, 0, (int)foreground_pos, &foreground, 0.92f);// ship
 	App->render->Blit(atlas_tex, 192, 104 + (int)foreground_pos, &(girl.GetCurrentFrame()), 0.92f); // girl animation
-
-	App->render->Blit(atlas_tex, 0, 170, &ground);
+	App->render->Blit(atlas_tex, 128, 96 + (int)foreground_pos, &(two_guys.GetCurrentFrame()), 0.92f); // two_guys animation
+	App->render->Blit(atlas_tex, 224, 104 + (int)foreground_pos, &(green_guy.GetCurrentFrame()), 0.92f); // green_guy animation
+	App->render->Blit(atlas_tex, 288, 96 + (int)foreground_pos, &(blue_guy.GetCurrentFrame()), 0.92f); // blue_guy animation
+	App->render->Blit(atlas_tex, 86, 24 + (int)foreground_pos, &(fedora_guy.GetCurrentFrame()), 0.92f); // fedora_guy animation
+	App->render->Blit(atlas_tex, 86, 24 + (int)foreground_pos, &(pink_guy.GetCurrentFrame()), 0.92f); // pink_guy animation
+	App->render->Blit(atlas_tex, 0, 170, &ground); //ground
 
 	return true;
 }
