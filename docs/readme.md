@@ -16,7 +16,7 @@ Let's analyze some games that use a input combo system significantly different b
 
 # Heavy Rain
 
-![Heavy Rain Example](/images/heavy_rain_example.gif)
+![Heavy Rain Example](images/heavy_rain_example.gif)
 
 use animated gifs when possible
 
