@@ -16,13 +16,15 @@ Let's analyze some games that use a input combo system significantly different b
 
 # Heavy Rain
 
+![Heavy Rain Example](/images/heavy_rain_example.gif)
+
 use animated gifs when possible
 
-## **Description in detail for the selected approach**
+## Description in detail for the selected approach
 
 Talk about the last games approaches 
 
-## **Our approach step by step**
+## Our approach step by step
 
 TODO 1: mimimi
 
@@ -30,15 +32,15 @@ RESOLVED TODO 1: mimimi
 
 Optional Homework for practicing!
 
-## **Ways to improve**
+## Ways to improve
 
 Explanation of any other improvements on the system
 
-## **References**
+## References
 
 references about the project
 
-## **License**
+## License
 
 ~~~~~~~~~~~~~~~
 
