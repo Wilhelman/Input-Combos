@@ -25,11 +25,11 @@ RESOLVED TODO 1: mimimi
 
 Optional Homework for practicing!
 
-# **Ways to improve**
+## **Ways to improve**
 
 Explanation of any other improvements on the system
 
-### **References**
+## **References**
 
 references about the project
 
