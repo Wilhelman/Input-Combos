@@ -17,39 +17,48 @@ First let's analyze some games that use a input combo system significantly diffe
 ### Street Fighter
 
 ![Street Fighter Example](images/street_fighter_example.gif)
+_Street Fighter - Ryu vs Ken_
 
-//todo put foot image some way D:
 
-En Street Fighter, el usuario es capaz de realizar una gran variedad de combos ya definidos. Algunas claves de su sistema de input combo son:
+In Street Fighter, the user is able to perform a variety of combos already defined. Some keys of their input combo system are:
 
-* Para realizar un combo no basta con pulsar correctamente una série definida de teclas, ha de ser en un timing correcto y en un tiempo limite.
-* La piscina de inputs posibles no es excesivamente larga.
+* To make a combo it is not enough to press a defined series of keys correctly, it must be in correct timing and in a limited time.
+* The pool of possible inputs is not excessively long.
 
 ### Heavy Rain
 
 ![Heavy Rain Example](images/heavy_rain_example.gif)
-
+_Heavy Rain example_
 //todo put foot image some way D:
 
-Heavy Rain utiliza un sistema de input combo bastante interesante:
-* Almacena los eventos introducidos por el usuario y te permite continuar el combo (mostrándote en este caso) la nueva tecla de evento a seguir.
-* El sistema comprueba constantemente que estés manteniendo las teclas ya pulsadas sin tener en cuenta cuanto tardas en pulsar la siguiente.
+In Heavy Rain they usually use a very interesting input combo system:
+* The system stores the events entered by the user and allows you to continue the combo (showing in this case) the new event key to follow.
+* The system constantly checks that you are keeping the keys already pressed without taking into account how long it takes to press the next one.
 
 ## Description in detail for the selected approach
 
-Talk about the last games approaches 
+In all the titles that use an input combo system, they use a vector or tree (explained in detail the difference later // all put cool link) to store the last inputs introduced by the user.
 
-# Fighting game approach
+# Input Storage
 
-Street Fighter y la gran mayoría de titulos de lucha utilizan un vector o arbol (explicado en detalle la diferencia más adelante //todo poner enlace guay) para almacenar los ultimos inputs introducidos por el usuario. Como ya sabemos la memória no es ilimitada y por lo tanto, se suele realizar el almacenamiento mediante un sistema de buffer circular que mantiene en memoria los inputs más recientes.
-De esta manera, cada vez que se introduce un nuevo input (y por ende se elimina el más antiguo) se comprueba desde el primer evento encontrado al último creado y es entonces cuando se busca una coincidencia entre la cadena de inputs y alguno de nuestros combos.
-En caso de encontrar una coincidencia, eliminaremos o no la lista de nuestros ultimos eventos y se realizará el movimiento o acción apropiado.
+* Vector
 
-# Other approach
+* Tree
+
+# Buffer circular
+
+As we already know the memory is not unlimited and, therefore, storage is usually carried out using a circular buffer system that keeps the most recent inputs in memory.
+In this way, every time a new input is introduced (and therefore the oldest one is deleted) it is checked from the first found event to the last one created and then look for a match between the chain of inputs and one of our combos.
+
+It should be noted that conditions can be added to eliminate events such as in a fighting game: the time between events.
+
+# Finite state machine
+
+In case of finding a match, we will eliminate or not the list of our last events and the appropriate movement or action will be carried out by means of a finite state machine.
 
 ## Our approach step by step
 
-Dado que en un juego de género lucha / beat em' up el sistema de input combo llega a ser más complejo por el factor del tiempo entre eventos, he decidido realizar un guía paso a paso donde llegaremos a realizar un sistema de input de combos de manera eficiente y simple.
+Since in a fight / beat em 'up genre the input combo system becomes more complex due to the time factor between events, I decided to make a step-by-step guide where we will get to make an input combo system in a efficient and simple way.
 
 TODO 1: mimimi
 
