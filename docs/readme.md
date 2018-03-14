@@ -29,7 +29,6 @@ In Street Fighter, the user is able to perform a variety of combos already defin
 
 ![Heavy Rain Example](images/heavy_rain_example.gif)
 _Heavy Rain example_
-//todo put foot image some way D:
 
 In Heavy Rain they usually use a very interesting input combo system:
 * The system stores the events entered by the user and allows you to continue the combo (showing in this case) the new event key to follow.
@@ -37,22 +36,22 @@ In Heavy Rain they usually use a very interesting input combo system:
 
 ## Description in detail for the selected approach
 
-In all the titles that use an input combo system, they use a vector or tree (explained in detail the difference later // all put cool link) to store the last inputs introduced by the user.
+In all the titles that use an input combo system, they use a vector or tree (difference explained in detail below) to store the last inputs introduced by the user.
 
-# Input Storage
+### Input Storage
 
 * Vector
 
 * Tree
 
-# Buffer circular
+### Buffer circular
 
 As we already know the memory is not unlimited and, therefore, storage is usually carried out using a circular buffer system that keeps the most recent inputs in memory.
 In this way, every time a new input is introduced (and therefore the oldest one is deleted) it is checked from the first found event to the last one created and then look for a match between the chain of inputs and one of our combos.
 
 It should be noted that conditions can be added to eliminate events such as in a fighting game: the time between events.
 
-# Finite state machine
+### Finite state machine
 
 In case of finding a match, we will eliminate or not the list of our last events and the appropriate movement or action will be carried out by means of a finite state machine.
 
