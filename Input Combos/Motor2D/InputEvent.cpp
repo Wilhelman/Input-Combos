@@ -8,6 +8,10 @@ InputEvent::InputEvent(ctPerfTimer time_since_born, EventType type) : timer(time
 {
 }
 
+InputEvent::InputEvent(double time_limit, EventType type) : time_limit(time_limit), type(type)
+{
+}
+
 InputEvent::~InputEvent()
 {
 }
@@ -15,4 +19,16 @@ InputEvent::~InputEvent()
 void InputEvent::StopTimer()
 {
 
+}
+
+EventType InputEvent::GetType()const {
+	return this->type;
+}
+
+double InputEvent::GetTimeSinceBorn()const {
+	return this->timer.ReadMs();
+}
+
+double InputEvent::GetTimeLimit()const {
+	return this->time_limit;
 }

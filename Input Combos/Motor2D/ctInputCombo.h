@@ -6,6 +6,7 @@
 #include "ctModule.h"
 
 #include <list>
+#include <vector>
 
 using namespace std;
 
@@ -15,6 +16,10 @@ enum EventType;
 // ---------------------------------------------------
 class ctInputCombo : public ctModule
 {
+
+	struct Combo {
+		vector<InputEvent*> input_events;
+	};
 
 public:
 
@@ -39,13 +44,20 @@ public:
 	bool CleanUp();
 
 private:
-
+	
 	InputEvent* GetInputEventWithActionType(EventType type);
+
+	InputEvent* GetInputEventWithActionTypeAndTimeLimit(EventType type, double time_limit);
+
+	bool CheckForSolvedCombo(Combo* combo_to_check, list<InputEvent*> event_chain);
 
 private:
 
 	//chain used to check the combos
 	list<InputEvent*> event_chain;
+
+
+	vector<Combo*> combo_list;
 
 	//non functional chain, used to
 	list<InputEvent*> event_record;

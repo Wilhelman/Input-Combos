@@ -25,18 +25,27 @@ class InputEvent
 public:
 
 	InputEvent(ctPerfTimer time_since_born, EventType type);
+	InputEvent(double time_limit, EventType type);
 	virtual ~InputEvent();
 
 	virtual void StopTimer();
 
 public:
 
-	ctPerfTimer timer;
+	//Returns the event type of the Input Event
+	EventType GetType()const;
+
+	//Returns the time since the Input Event was created in milliseconds
+	double GetTimeSinceBorn()const;
+
+	//Returns the time limit that has to pass since it is entered until the next one is pressed in milliseconds
+	double GetTimeLimit()const;
 
 private:
 
 	EventType type = EventType::NO_TYPE;
-
+	ctPerfTimer timer;
+	double time_limit = 0.0;
 	
 
 };

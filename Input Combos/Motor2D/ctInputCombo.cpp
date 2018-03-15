@@ -34,6 +34,18 @@ bool ctInputCombo::Start()
 
 	LOG("Start Input Combo!");
 
+	Combo *test_combo = new Combo();
+
+	InputEvent* tmp_right = this->GetInputEventWithActionTypeAndTimeLimit(RIGHT, 1000);
+
+	test_combo->input_events.push_back(tmp_right);
+
+	InputEvent* tmp_left = this->GetInputEventWithActionTypeAndTimeLimit(LEFT, 1000);
+
+	test_combo->input_events.push_back(tmp_left);
+
+	combo_list.push_back(test_combo);
+
 	return true;
 }
 
@@ -42,6 +54,13 @@ bool ctInputCombo::PreUpdate()
 {
 	bool ret = true;
 
+	//check for combo
+	vector<Combo*>::const_iterator it = combo_list.begin();
+
+	while (it != combo_list.end()) {
+		this->CheckForSolvedCombo((*it),this->event_chain);
+		it++;
+	}
 
 	return ret;
 }
@@ -66,16 +85,21 @@ bool ctInputCombo::PostUpdate()
 		event_chain.push_back(tmp_input_event);
 	}
 
+
+	/*-------CHECK TIME IN ORDER TO DELETE INPUT EVENTS-------*/
+
 	list<InputEvent*>::const_iterator it = event_chain.begin();
 
 	while (it != event_chain.end()) {
 
-		if ((*it)->timer.ReadMs() > GENERIC_TIME_LIMIT)
+		if ((*it)->GetTimeSinceBorn() > GENERIC_TIME_LIMIT) {
 			delete *it;
-
+			event_chain.erase(it);
+		}
 		it++;
 	}
 
+	LOG("Event Chain size: %i", event_chain.size());
 
 	return ret;
 }
@@ -103,6 +127,48 @@ InputEvent* ctInputCombo::GetInputEventWithActionType(EventType type) {
 	ctPerfTimer tmp_timer;
 	tmp_timer.Start();
 	return new InputEvent(tmp_timer, type);
+}
+
+InputEvent* ctInputCombo::GetInputEventWithActionTypeAndTimeLimit(EventType type, double time_limit) {
+
+	return new InputEvent(time_limit, type);
+}
+
+bool ctInputCombo::CheckForSolvedCombo(Combo* combo_to_check, list<InputEvent*> event_chain) {
+	
+	list<InputEvent*>::const_iterator it_event_chain = event_chain.begin();
+	vector<InputEvent*>::const_iterator it_combo_to_check = combo_to_check->input_events.begin();
+	
+	while (it_event_chain != event_chain.end()) {
+
+		while (it_combo_to_check != combo_to_check->input_events.end()) {
+			//Is this combo input equal to event_chain ?
+			if (((*it_combo_to_check)->GetType() == (*it_event_chain)->GetType())) {
+
+				//Is this combo input valid for a time limit ?
+				if ((*it_combo_to_check)->GetTimeLimit() >= (*it_event_chain)->GetTimeSinceBorn()) {
+
+					//Is the combo completed?
+					if (it_combo_to_check == combo_to_check->input_events.end()) {
+						return true;
+					}
+					else { //Then continue checking the rest of inputs!
+						it_combo_to_check++;
+						if((*it_event_chain) != event_chain.back())
+							it_event_chain++;
+						continue;
+					}
+				}
+			}
+			it_combo_to_check++;
+			continue;
+		}
+
+		it_event_chain++;
+	}
+	
+	//No combo solved?
+	return false;
 }
 
 // class Input Combos ---------------------------------------------------
