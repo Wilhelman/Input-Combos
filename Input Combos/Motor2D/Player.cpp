@@ -18,10 +18,9 @@ Player::Player(int x, int y, EntityType type) : Entity(x, y, type) {
 	bool ret = true;
 
 	pugi::xml_document	config_file;
-	pugi::xml_node* node = &App->LoadConfig(config_file); //todo: make a method to get the root without passing the xml_document
+	pugi::xml_node* node = &App->LoadConfig(config_file);
 	node = &node->child("entities").child("player");
 
-	//read animation from node
 	for (pugi::xml_node animations = node->child("animations").child("animation"); animations && ret; animations = animations.next_sibling("animation"))
 	{
 		std::string tmp(animations.attribute("name").as_string());
@@ -30,6 +29,10 @@ Player::Player(int x, int y, EntityType type) : Entity(x, y, type) {
 			LoadAnimation(animations, &idle);
 		else if (tmp == "forward")
 			LoadAnimation(animations, &forward);
+		else if (tmp == "backward")
+			LoadAnimation(animations, &backward);
+		else if (tmp == "hadoken")
+			LoadAnimation(animations, &hadoken);
 	}
 
 	animation = &idle;
@@ -62,6 +65,11 @@ void Player::Update(float dt)
 	}else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
 		position.x -= 2;
 		this->current_state = PlayerState::ST_BACKWARD;
+	}else if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) {
+		this->current_state = PlayerState::ST_HADOKEN;
+	}
+	else if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP) {
+		hadoken.Reset();
 	}
 
 	switch (current_state)
@@ -73,9 +81,10 @@ void Player::Update(float dt)
 		animation = &forward;
 		break;
 	case Player::ST_BACKWARD:
-		animation = &forward;
+		animation = &backward;
 		break;
 	case Player::ST_HADOKEN:
+		animation = &hadoken;
 		break;
 	case Player::ST_UNKNOWN:
 		break;

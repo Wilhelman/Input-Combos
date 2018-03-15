@@ -46,6 +46,12 @@
 					<frame x="74" y="128" width="64" height="92" />
 					<frame x="4" y="128" width="64" height="92" />
 				</animation>
+				<animation name="hadoken" speed="7.1" loop="false">
+					<frame x="16" y="1545" width="106" height="90" />
+					<frame x="121" y="1545" width="106" height="90" />
+					<frame x="238" y="1545" width="106" height="90" />
+					<frame x="357" y="1545" width="106" height="90" />
+				</animation>
 			</animations>
 		</player>
 	</entities>
