@@ -2,8 +2,10 @@
 #include "ctLog.h"
 #include "ctApp.h"
 #include "ctInput.h"
-#include "ctInputCombo.h"
 #include "ctRender.h"
+
+#include "ctInputCombo.h"
+#include "InputEvent.h"
 
 ctInputCombo::ctInputCombo() : ctModule()
 {
@@ -43,31 +45,25 @@ bool ctInputCombo::PreUpdate()
 	return ret;
 }
 
-bool ctInputCombo::Update()
-{
-	bool ret = true;
-
-	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN) {
-		event_chain.push_back()
-	}
-
-	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN) {
-		
-	}
-
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
-		
-	}
-
-
-	return ret;
-}
-
 // Called after all Updates
 bool ctInputCombo::PostUpdate()
 {
 	bool ret = true;
 
+	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN) {
+		ctTimer tmp_timer;
+		tmp_timer.SetStartTime(SDL_GetTicks());
+		InputEvent* tmp = new InputEvent(tmp_timer, EventType::RIGHT);
+		event_chain.push_back(tmp);
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN) {
+
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
+
+	}
 
 	return ret;
 }

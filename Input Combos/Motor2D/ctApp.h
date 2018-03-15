@@ -14,6 +14,7 @@ class ctInput;
 class ctRender;
 class ctTextures;
 class ctAudio;
+class ctInputCombo;
 class ctKenStageScene;
 class ctEntities;
 class ctGui;
@@ -79,6 +80,7 @@ public:
 	ctRender*			render = nullptr;
 	ctTextures*			tex = nullptr;
 	ctAudio*			audio = nullptr;
+	ctInputCombo*		input_combo = nullptr;
 	ctKenStageScene*	ken_stage_scene = nullptr;
 	ctEntities*			entities = nullptr;
 	ctGui*				gui = nullptr;

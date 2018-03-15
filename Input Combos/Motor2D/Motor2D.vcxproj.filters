@@ -25,6 +25,9 @@
     <Filter Include="Core\Modules\GUI">
       <UniqueIdentifier>{14b4087a-3bea-4a5e-b99f-8a814653b210}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Modules\InputComboSystem">
+      <UniqueIdentifier>{aca21551-2f35-43d0-abcd-bf6657c0526b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ctApp.cpp">
@@ -94,7 +97,10 @@
       <Filter>Core\Modules</Filter>
     </ClCompile>
     <ClCompile Include="ctInputCombo.cpp">
-      <Filter>Core\Modules</Filter>
+      <Filter>Core\Modules\InputComboSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="InputEvent.cpp">
+      <Filter>Core\Modules\InputComboSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -180,7 +186,10 @@
       <Filter>Core\Modules</Filter>
     </ClInclude>
     <ClInclude Include="ctInputCombo.h">
-      <Filter>Core\Modules</Filter>
+      <Filter>Core\Modules\InputComboSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="InputEvent.h">
+      <Filter>Core\Modules\InputComboSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

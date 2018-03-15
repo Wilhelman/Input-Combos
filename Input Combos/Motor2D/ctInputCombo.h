@@ -8,27 +8,11 @@
 
 using namespace std;
 
+class InputEvent;
+
 // ---------------------------------------------------
 class ctInputCombo : public ctModule
 {
-
-	enum EventType {
-		RIGHT = 0,
-		LEFT,
-		UP,
-		DOWN,
-		LIGHT_PUNCH,
-		HEAVY_PUNCH,
-		LIGHT_KICK,
-		HEAVY_KICK,
-
-		NO_TYPE
-	};
-
-	struct InputEvent {
-		EventType type;
-		ctTimer timer;
-	};
 
 public:
 
@@ -45,8 +29,6 @@ public:
 
 	// Called before all Updates
 	bool PreUpdate();
-
-	bool Update();
 
 	// Called after all Updates
 	bool PostUpdate();

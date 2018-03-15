@@ -9,6 +9,7 @@
 #include "ctRender.h"
 #include "ctTextures.h"
 #include "ctAudio.h"
+#include "ctInputCombo.h"
 #include "ctKenStageScene.h"
 #include "ctEntities.h"
 #include "ctGui.h"
@@ -25,6 +26,7 @@ ctApp::ctApp(int argc, char* args[]) : argc(argc), args(args)
 	render = new ctRender();
 	tex = new ctTextures();
 	audio = new ctAudio();
+	input_combo = new ctInputCombo();
 	ken_stage_scene = new ctKenStageScene();
 	entities = new ctEntities();
 	gui = new ctGui();
@@ -37,6 +39,7 @@ ctApp::ctApp(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(win);
 	AddModule(tex);
 	AddModule(audio);
+	AddModule(input_combo);
 	AddModule(ken_stage_scene);
 	AddModule(entities);
 	AddModule(gui);
