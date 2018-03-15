@@ -93,6 +93,9 @@
     <ClCompile Include="ctFonts.cpp">
       <Filter>Core\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="ctInputCombo.cpp">
+      <Filter>Core\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ctApp.h">
@@ -174,6 +177,9 @@
       <Filter>Core\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="ctFonts.h">
+      <Filter>Core\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ctInputCombo.h">
       <Filter>Core\Modules</Filter>
     </ClInclude>
   </ItemGroup>
