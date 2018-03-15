@@ -6,6 +6,7 @@
 
 #include "ctInputCombo.h"
 #include "InputEvent.h"
+#include "ctPerfTimer.h"
 
 ctInputCombo::ctInputCombo() : ctModule()
 {
@@ -51,19 +52,30 @@ bool ctInputCombo::PostUpdate()
 	bool ret = true;
 
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN) {
-		ctTimer tmp_timer;
-		tmp_timer.SetStartTime(SDL_GetTicks());
-		InputEvent* tmp = new InputEvent(tmp_timer, EventType::RIGHT);
-		event_chain.push_back(tmp);
+		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::RIGHT);
+		event_chain.push_back(tmp_input_event);
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN) {
-
+		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::LEFT);
+		event_chain.push_back(tmp_input_event);
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
-
+		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::HEAVY_KICK);
+		event_chain.push_back(tmp_input_event);
 	}
+
+	list<InputEvent*>::const_iterator it = event_chain.begin();
+
+	while (it != event_chain.end()) {
+
+		if ((*it)->timer.ReadMs() > GENERIC_TIME_LIMIT)
+			delete *it;
+
+		it++;
+	}
+
 
 	return ret;
 }
@@ -81,9 +93,16 @@ bool ctInputCombo::CleanUp()
 		delete *it;
 		it++;
 	}
+
 	event_chain.clear();
 
 	return ret;
+}
+
+InputEvent* ctInputCombo::GetInputEventWithActionType(EventType type) {
+	ctPerfTimer tmp_timer;
+	tmp_timer.Start();
+	return new InputEvent(tmp_timer, type);
 }
 
 // class Input Combos ---------------------------------------------------

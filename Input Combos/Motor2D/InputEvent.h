@@ -1,7 +1,7 @@
 #ifndef __InputEvent_H__
 #define __InputEvent_H__
 
-#include "ctTimer.h"
+class ctPerfTimer;
 
 enum EventType {
 	RIGHT = 0,
@@ -24,16 +24,20 @@ class InputEvent
 
 public:
 
-	InputEvent(ctTimer time_since_born, EventType type);
+	InputEvent(ctPerfTimer time_since_born, EventType type);
 	virtual ~InputEvent();
 
 	virtual void StopTimer();
+
+public:
+
+	ctPerfTimer timer;
 
 private:
 
 	EventType type = EventType::NO_TYPE;
 
-	ctTimer timer;
+	
 
 };
 

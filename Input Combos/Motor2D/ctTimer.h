@@ -11,7 +11,7 @@ public:
 	ctTimer();
 
 	void Start();
-	void SetStartTime(int time);
+	void SetStartTime(uint32 time);
 	uint32 Read() const;
 	float ReadSec() const;
 

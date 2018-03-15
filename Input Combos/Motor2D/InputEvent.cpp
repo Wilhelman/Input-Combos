@@ -2,7 +2,9 @@
 #include "InputEvent.h"
 #include "ctRender.h"
 
-InputEvent::InputEvent(ctTimer time_since_born, EventType type) : timer(time_since_born), type(type)
+#include "ctPerfTimer.h"
+
+InputEvent::InputEvent(ctPerfTimer time_since_born, EventType type) : timer(time_since_born), type(type)
 {
 }
 

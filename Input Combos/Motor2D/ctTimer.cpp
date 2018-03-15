@@ -19,7 +19,7 @@ void ctTimer::Start()
 
 // ---------------------------------------------
 
-void ctTimer::SetStartTime(int time) {
+void ctTimer::SetStartTime(uint32 time) {
 	started_at = SDL_GetTicks() + time;
 }
 

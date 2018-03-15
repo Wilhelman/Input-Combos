@@ -1,14 +1,16 @@
 #ifndef __ctInputCombo_H__
 #define __ctInputCombo_H__
 
+#define GENERIC_TIME_LIMIT 2000
+
 #include "ctModule.h"
-#include "ctTimer.h"
 
 #include <list>
 
 using namespace std;
 
 class InputEvent;
+enum EventType;
 
 // ---------------------------------------------------
 class ctInputCombo : public ctModule
@@ -35,6 +37,10 @@ public:
 
 	// Called before quitting
 	bool CleanUp();
+
+private:
+
+	InputEvent* GetInputEventWithActionType(EventType type);
 
 private:
 
