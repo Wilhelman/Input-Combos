@@ -2,14 +2,32 @@
 #define __ctInputCombo_H__
 
 #include "ctModule.h"
-#include <vector>
+#include "ctTimer.h"
+
+#include <list>
+
+using namespace std;
 
 // ---------------------------------------------------
 class ctInputCombo : public ctModule
 {
 
-	struct InputEvent {
+	enum EventType {
+		RIGHT = 0,
+		LEFT,
+		UP,
+		DOWN,
+		LIGHT_PUNCH,
+		HEAVY_PUNCH,
+		LIGHT_KICK,
+		HEAVY_KICK,
 
+		NO_TYPE
+	};
+
+	struct InputEvent {
+		EventType type;
+		ctTimer timer;
 	};
 
 public:
@@ -38,7 +56,11 @@ public:
 
 private:
 
-	vector<InputEvent*> event_chain;
+	//chain used to check the combos
+	list<InputEvent*> event_chain;
+
+	//non functional chain, used to
+	list<InputEvent*> event_record;
 
 };
 

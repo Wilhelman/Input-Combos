@@ -48,7 +48,7 @@ bool ctInputCombo::Update()
 	bool ret = true;
 
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN) {
-		
+		event_chain.push_back()
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN) {
@@ -78,6 +78,14 @@ bool ctInputCombo::CleanUp()
 	bool ret = true;
 
 	LOG("Freeing Input Combo!");
+
+	list<InputEvent*>::const_iterator it = event_chain.begin();
+
+	while (it != event_chain.end()) {
+		delete *it;
+		it++;
+	}
+	event_chain.clear();
 
 	return ret;
 }
