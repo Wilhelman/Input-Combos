@@ -1,6 +1,6 @@
 ﻿# INPUT COMBOS
 
-Breve descripcion de que vamos a hacer
+How to properly store input events and perform combos.
 
 * [Github repository](https://github.com/Wilhelman/Input-Combos)  
 * [Website](https://wilhelman.github.io/Input-Combos/)
