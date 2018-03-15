@@ -34,7 +34,7 @@ In Heavy Rain they usually use a very interesting input combo system:
 * The system stores the events entered by the user and allows you to continue the combo (showing in this case) the new event key to follow.
 * The system constantly checks that you are keeping the keys already pressed without taking into account how long it takes to press the next one.
 
-## Description in detail for the selected approach
+## Description in detail
 
 In all the titles that use an input combo system, they use a vector or tree (difference explained in detail below) to store the last inputs introduced by the user.
 
