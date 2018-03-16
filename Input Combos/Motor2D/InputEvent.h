@@ -20,8 +20,6 @@ enum EventType {
 class InputEvent
 {
 
-	
-
 public:
 
 	InputEvent(ctPerfTimer time_since_born, EventType type);
