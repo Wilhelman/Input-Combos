@@ -16,19 +16,23 @@ InputEvent::~InputEvent()
 {
 }
 
-void InputEvent::StopTimer()
-{
-
-}
-
 EventType InputEvent::GetType()const {
 	return this->type;
 }
 
-double InputEvent::GetTimeSinceBorn()const {
+double InputEvent::GetTimer()const {
 	return this->timer.ReadMs();
+}
+
+double InputEvent::GetTimeSinceBorn()const {
+	return this->time_since_born;
 }
 
 double InputEvent::GetTimeLimit()const {
 	return this->time_limit;
+}
+
+void InputEvent::StopTimer()
+{
+	this->time_since_born = this->timer.ReadMs();
 }

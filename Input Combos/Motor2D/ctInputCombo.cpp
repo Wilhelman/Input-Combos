@@ -92,10 +92,11 @@ bool ctInputCombo::PostUpdate()
 
 	while (it != event_chain.end()) {
 
-		if ((*it)->GetTimeSinceBorn() > GENERIC_TIME_LIMIT) {
+		if ((*it)->GetTimer() > GENERIC_TIME_LIMIT) {
 			delete *it;
 			event_chain.erase(it);
 		}
+
 		it++;
 	}
 
@@ -124,6 +125,12 @@ bool ctInputCombo::CleanUp()
 }
 
 InputEvent* ctInputCombo::GetInputEventWithActionType(EventType type) {
+
+	InputEvent* last_input_event = event_chain.back();
+
+	if(last_input_event != nullptr)
+		last_input_event->StopTimer();
+
 	ctPerfTimer tmp_timer;
 	tmp_timer.Start();
 	return new InputEvent(tmp_timer, type);
@@ -142,6 +149,7 @@ bool ctInputCombo::CheckForSolvedCombo(Combo* combo_to_check, list<InputEvent*> 
 	while (it_event_chain != event_chain.end()) {
 
 		while (it_combo_to_check != combo_to_check->input_events.end()) {
+
 			//Is this combo input equal to event_chain ?
 			if (((*it_combo_to_check)->GetType() == (*it_event_chain)->GetType())) {
 
@@ -149,19 +157,25 @@ bool ctInputCombo::CheckForSolvedCombo(Combo* combo_to_check, list<InputEvent*> 
 				if ((*it_combo_to_check)->GetTimeLimit() >= (*it_event_chain)->GetTimeSinceBorn()) {
 
 					//Is the combo completed?
-					if (it_combo_to_check == combo_to_check->input_events.end()) {
+					if ((*it_combo_to_check) == combo_to_check->input_events.back()) {
 						return true;
 					}
 					else { //Then continue checking the rest of inputs!
+
+						if ((*it_event_chain) == event_chain.back())
+							break;
+
 						it_combo_to_check++;
-						if((*it_event_chain) != event_chain.back())
-							it_event_chain++;
+						it_event_chain++;
 						continue;
 					}
 				}
 			}
-			it_combo_to_check++;
-			continue;
+
+			if ((*it_event_chain) == event_chain.back())
+				break;
+
+			it_event_chain++;
 		}
 
 		it_event_chain++;
