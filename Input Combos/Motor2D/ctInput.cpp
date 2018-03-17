@@ -36,35 +36,6 @@ bool ctInput::Awake(pugi::xml_node& config)
 		ret = false;
 	}
 
-	if (SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER) < 0)
-	{
-		LOG("SDL_GAMECONTROLLER could not initialize! SDL_Error: %s\n", SDL_GetError());
-		ret = false;
-	}
-
-	if (SDL_NumJoysticks() < 1)
-		LOG("Warning: No joystick detected");
-	else
-	{
-		pad_controller = SDL_JoystickOpen(0);
-		if (pad_controller == NULL)
-		{
-			LOG("Warning: Unable to open game controller! SDL Error: %s\n", SDL_GetError());
-		}
-	}
-
-	LOG("Init the controller (search and asign)");
-	controller = nullptr;
-	for (int i = 0; i < SDL_NumJoysticks(); i++)
-	{
-		if (SDL_IsGameController(i)) {
-			controller = SDL_GameControllerOpen(i);
-			if (controller) {
-				break;
-			}
-		}
-	}
-
 	return ret;
 }
 
@@ -119,34 +90,6 @@ bool ctInput::PreUpdate()
 			pad_buttons[i] = KEY_IDLE;
 	}
 
-	if (SDL_GameControllerGetButton(controller, SDL_CONTROLLER_BUTTON_A) == 1) {
-		if (gamepad.A == PAD_BUTTON_IDLE)
-			gamepad.A = PAD_BUTTON_DOWN;
-		else
-			gamepad.A = PAD_BUTTON_REPEAT;
-	}
-	else
-	{
-		if (gamepad.A == PAD_BUTTON_REPEAT || (gamepad.A == PAD_BUTTON_DOWN))
-			gamepad.A = PAD_BUTTON_KEY_UP;
-		else
-			gamepad.A = PAD_BUTTON_IDLE;
-	}
-
-	if (SDL_GameControllerGetButton(controller, SDL_CONTROLLER_BUTTON_B) == 1) {
-		if (gamepad.B == PAD_BUTTON_IDLE)
-			gamepad.B = PAD_BUTTON_DOWN;
-		else
-			gamepad.B = PAD_BUTTON_REPEAT;
-	}
-	else
-	{
-		if (gamepad.B == PAD_BUTTON_REPEAT || (gamepad.B == PAD_BUTTON_DOWN))
-			gamepad.B = PAD_BUTTON_KEY_UP;
-		else
-			gamepad.B = PAD_BUTTON_IDLE;
-	}
-
 	while (SDL_PollEvent(&event) != 0)
 	{
 		switch (event.type)
@@ -185,15 +128,14 @@ bool ctInput::PreUpdate()
 			//LOG("Mouse button %d up", event.button.button-1);
 			break;
 
-		case SDL_MOUSEMOTION: {
+		case SDL_MOUSEMOTION:
 			int scale = App->win->GetScale();
 			mouse_motion_x = event.motion.xrel / scale;
 			mouse_motion_y = event.motion.yrel / scale;
 			mouse_x = event.motion.x / scale;
 			mouse_y = event.motion.y / scale;
 			//LOG("Mouse motion x %d y %d", mouse_motion_x, mouse_motion_y);
-		}
-		break;
+			break;
 
 		case SDL_JOYAXISMOTION:
 			if (event.jaxis.which == 0)
@@ -201,53 +143,17 @@ bool ctInput::PreUpdate()
 			{
 				if (event.jaxis.axis == 0)
 				{
-					if (event.jaxis.value < -PAD_DEAD_ZONE || event.jaxis.value > PAD_DEAD_ZONE) {
+					if (event.jaxis.value < -PAD_DEAD_ZONE || event.jaxis.value > PAD_DEAD_ZONE)
 						x_axis = event.jaxis.value;
-						
-						if (App->input->GetPadXAxis() < 0)
-						{
-							if (x_axis_state == LEFT_AXIS || x_axis_state == LEFT_AXIS_REPEAT)
-								x_axis_state = LEFT_AXIS_REPEAT;
-							else
-								x_axis_state = LEFT_AXIS;
-						}
-						else if (App->input->GetPadXAxis() > 0)
-						{
-							if (x_axis_state == RIGHT_AXIS || x_axis_state == RIGHT_AXIS_REPEAT)
-								x_axis_state = RIGHT_AXIS_REPEAT;
-							else
-								x_axis_state = RIGHT_AXIS;
-						}
-					}
-					else {
+					else
 						x_axis = 0;
-						x_axis_state = NO_STATE;
-					}
 				}
 				else if (event.jaxis.axis == 1)
 				{
-					if (event.jaxis.value < -PAD_DEAD_ZONE || event.jaxis.value > PAD_DEAD_ZONE) {
+					if (event.jaxis.value < -PAD_DEAD_ZONE || event.jaxis.value > PAD_DEAD_ZONE)
 						y_axis = event.jaxis.value;
-						if (App->input->GetPadYAxis() < 0)
-						{
-							if (y_axis_state == UP_AXIS || y_axis_state == UP_AXIS_REPEAT)
-								y_axis_state = UP_AXIS_REPEAT;
-							else
-								y_axis_state = UP_AXIS;
-
-						}
-						else if (App->input->GetPadYAxis() > 0)
-						{
-							if (y_axis_state == DOWN_AXIS || y_axis_state == DOWN_AXIS_REPEAT)
-								y_axis_state = DOWN_AXIS_REPEAT;
-							else
-								y_axis_state = DOWN_AXIS;
-						}
-					}
-					else {
+					else
 						y_axis = 0;
-						y_axis_state = NO_STATE;
-					}
 				}
 			}
 			break;
@@ -255,6 +161,11 @@ bool ctInput::PreUpdate()
 		case SDL_JOYBUTTONDOWN:
 			if (event.jbutton.which == 0)
 			{
+				// RUMBLE TEST
+				if (SDL_HapticRumblePlay(pad_controller_haptic, 0.75, 500) != 0)
+				{
+					printf("Warning: Unable to play rumble! %s\n", SDL_GetError());
+				}
 				is_keyboard_available = false;
 				pad_buttons[event.jbutton.button - 1] = KEY_DOWN;
 			}
