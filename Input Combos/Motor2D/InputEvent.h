@@ -8,10 +8,8 @@ enum EventType {
 	LEFT,
 	UP,
 	DOWN,
-	LIGHT_PUNCH,
-	HEAVY_PUNCH,
-	LIGHT_KICK,
-	HEAVY_KICK,
+	PUNCH,
+	KICK,
 
 	NO_EVENT_TYPE
 };

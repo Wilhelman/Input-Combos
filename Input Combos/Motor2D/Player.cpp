@@ -80,7 +80,7 @@ void Player::Update(float dt)
 	}
 	else {
 		current_state = PlayerState::ST_SHORYUKEN;
-		if (animation->Finished()) {
+		if (shoryuken.GetCurrentFrame().x == shoryuken.frames[5].x) {
 			performing_shoryuken = false;
 			current_state = PlayerState::ST_IDLE;
 		}
@@ -114,6 +114,7 @@ void Player::OnComboCompleted(ComboType type) {
 	{
 	case SHORYUKEN:
 		LOG("SHORYUKEN!");
+		shoryuken.Reset();
 		performing_shoryuken = true;
 	default:
 		break;

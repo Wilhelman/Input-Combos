@@ -46,6 +46,8 @@ private:
 
 	InputEvent* GetInputEventWithActionTypeAndTimeLimit(EventType type, double time_limit);
 
+	void CleanEventChain();
+
 private:
 
 	//chain used to check the combos

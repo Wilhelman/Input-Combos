@@ -52,7 +52,7 @@
 					<frame x="74" y="128" width="64" height="92" />
 					<frame x="4" y="128" width="64" height="92" />
 				</animation>
-				<animation name="shoryuken" speed="7.1" loop="false">
+				<animation name="shoryuken" speed="5.1" loop="false">
 					<frame x="22" y="1785" width="68" height="126" />
 					<frame x="112" y="1785" width="68" height="126" />
 					<frame x="198" y="1785" width="68" height="126" />
@@ -63,18 +63,6 @@
 			</animations>
 		</player>
 	</entities>
-	<particles>
-		<fxPlayerBasicShot name="audio/fx/hadoken.wav" />
-		<spritesheetSource name="textures/ryu.png">
-			<particle name="hadoken" speed="1" life_time="3000">
-				<animation name="player_basic_shot_right" speed_x="1" speed_y="0.0" loop="true">
-					<frame x="4" y="83" width="9" height="5" />
-					<frame x="18" y="83" width="9" height="5" />
-					<frame x="34" y="83" width="9" height="5" />
-				</animation>
-			</particle>
-		</spritesheetSource>
-	</particles>
 	<ken_stage>
 		<spritesheetSource name="textures/ken_stage.png">
 			<animations>
