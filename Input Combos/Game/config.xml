@@ -22,7 +22,7 @@
 		<combo type="SHORYUKEN">
 			<input_event type="RIGHT" time_limit="1000"/>
 			<input_event type="DOWN" time_limit="1000"/>
-			<input_event type="DOWN_RIGHT" time_limit="1000"/>
+			<input_event type="RIGHT" time_limit="1000"/>
 			<input_event type="PUNCH" time_limit="1000"/>
 		</combo>
 	</input_combo>

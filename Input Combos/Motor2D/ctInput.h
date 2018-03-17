@@ -36,11 +36,19 @@ enum AxisState
 	LEFT_AXIS,
 	UP_AXIS,
 	DOWN_AXIS,
+	UP_RIGHT_AXIS,
+	UP_LEFT_AXIS,
+	DOWN_RIGHT_AXIS,
+	DOWN_LEFT_AXIS,
 
 	RIGHT_AXIS_REPEAT,
 	LEFT_AXIS_REPEAT,
 	UP_AXIS_REPEAT,
 	DOWN_AXIS_REPEAT,
+	UP_RIGHT_AXIS_REPEAT,
+	UP_LEFT_AXIS_REPEAT,
+	DOWN_RIGHT_AXIS_REPEAT,
+	DOWN_LEFT_AXIS_REPEAT,
 
 	NO_STATE
 };
@@ -118,6 +126,7 @@ public:
 
 	AxisState x_axis_state = NO_STATE;
 	AxisState y_axis_state = NO_STATE;
+	AxisState diagonal_axis_state = NO_STATE;
 
 	Gamepad gamepad;
 
