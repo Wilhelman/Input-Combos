@@ -13,6 +13,7 @@ class Player : public Entity
 		ST_FORWARD,
 		ST_BACKWARD,
 		ST_SHORYUKEN,
+		ST_TATSUMAKI,
 
 		ST_UNKNOWN
 	};
@@ -34,12 +35,14 @@ private:
 	ctAnimation forward = ctAnimation();
 	ctAnimation backward = ctAnimation();
 	ctAnimation shoryuken = ctAnimation();
+	ctAnimation tatsumaki = ctAnimation();
 
 	//animations velocity
-	uint idle_vel = 0u, forward_vel = 0u, backward_vel = 0u, shoryuken_vel = 0u;
+	uint idle_vel = 0u, forward_vel = 0u, backward_vel = 0u, shoryuken_vel = 0u, tatsumaki_vel = 0u;
 
 	//action examples helpers
 	bool performing_shoryuken = false;
+	bool performing_tatsumaki = false;
 
 private:
 

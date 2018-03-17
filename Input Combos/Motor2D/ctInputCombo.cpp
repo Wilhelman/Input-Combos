@@ -35,8 +35,8 @@ bool ctInputCombo::Awake(pugi::xml_node& conf)
 
 		if (tmp == "SHORYUKEN")
 			tmp_combo->SetType(ComboType::SHORYUKEN);
-		//else if (tmp == "forward")
-			//LoadAnimation(animations, &forward);
+		else if (tmp == "TATSUMAKI")
+			tmp_combo->SetType(ComboType::TATSUMAKI);
 
 		for (pugi::xml_node input_node = combo_node.child("input_event"); input_node && ret; input_node = input_node.next_sibling("input_event"))
 		{
@@ -48,6 +48,12 @@ bool ctInputCombo::Awake(pugi::xml_node& conf)
 				tmp_type = EventType::RIGHT;
 			else if (tmp_event == "LEFT")
 				tmp_type = EventType::LEFT;
+			else if (tmp_event == "DOWN")
+				tmp_type = EventType::DOWN;
+			else if (tmp_event == "PUNCH")
+				tmp_type = EventType::PUNCH;
+			else if (tmp_event == "KICK")
+				tmp_type = EventType::KICK;
 
 			InputEvent* tmp_input_event = new InputEvent(input_node.attribute("time_limit").as_double(), tmp_type);
 
@@ -83,6 +89,7 @@ bool ctInputCombo::PreUpdate()
 		if ((*it)->CheckForSolvedCombo(this->event_chain)) {
 			App->entities->GetPlayer()->OnComboCompleted((*it)->GetType());
 			this->CleanEventChain();
+			break;
 		}
 			
 		it++;
@@ -97,21 +104,30 @@ bool ctInputCombo::PostUpdate()
 {
 	bool ret = true;
 
-	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN) {
+	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN) {
 		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::RIGHT);
 		event_chain.push_back(tmp_input_event);
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN) {
+	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN) {
 		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::LEFT);
 		event_chain.push_back(tmp_input_event);
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
-		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::HEAVY_KICK);
+	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN) {
+		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::DOWN);
 		event_chain.push_back(tmp_input_event);
 	}
 
+	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN) {
+		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::PUNCH);
+		event_chain.push_back(tmp_input_event);
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN) {
+		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::KICK);
+		event_chain.push_back(tmp_input_event);
+	}
 
 	/*-------CHECK TIME IN ORDER TO DELETE INPUT EVENTS-------*/
 

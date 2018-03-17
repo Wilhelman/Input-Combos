@@ -9,6 +9,7 @@ class InputEvent;
 
 enum ComboType {
 	SHORYUKEN = 0,
+	TATSUMAKI,
 
 	NO_DEF
 };
