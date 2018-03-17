@@ -147,20 +147,6 @@ bool ctInput::PreUpdate()
 			gamepad.B = PAD_BUTTON_IDLE;
 	}
 
-	if (SDL_GameControllerGetButton(controller, SDL_CONTROLLER_BUTTON_X) == 1) {
-		if (gamepad.X == PAD_BUTTON_IDLE)
-			gamepad.X = PAD_BUTTON_DOWN;
-		else
-			gamepad.X = PAD_BUTTON_REPEAT;
-	}
-	else
-	{
-		if (gamepad.X == PAD_BUTTON_REPEAT || (gamepad.X == PAD_BUTTON_DOWN))
-			gamepad.X = PAD_BUTTON_KEY_UP;
-		else
-			gamepad.X = PAD_BUTTON_IDLE;
-	}
-
 	while (SDL_PollEvent(&event) != 0)
 	{
 		switch (event.type)
@@ -222,9 +208,8 @@ bool ctInput::PreUpdate()
 						{
 							if (x_axis_state == LEFT_AXIS || x_axis_state == LEFT_AXIS_REPEAT)
 								x_axis_state = LEFT_AXIS_REPEAT;
-							else if(y_axis_state == NO_STATE)
+							else
 								x_axis_state = LEFT_AXIS;
-
 						}
 						else if (App->input->GetPadXAxis() > 0)
 						{
