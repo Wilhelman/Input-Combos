@@ -102,6 +102,9 @@
     <ClCompile Include="InputEvent.cpp">
       <Filter>Core\Modules\InputComboSystem</Filter>
     </ClCompile>
+    <ClCompile Include="Combo.cpp">
+      <Filter>Core\Modules\InputComboSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ctApp.h">
@@ -189,6 +192,9 @@
       <Filter>Core\Modules\InputComboSystem</Filter>
     </ClInclude>
     <ClInclude Include="InputEvent.h">
+      <Filter>Core\Modules\InputComboSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Combo.h">
       <Filter>Core\Modules\InputComboSystem</Filter>
     </ClInclude>
   </ItemGroup>

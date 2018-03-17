@@ -12,7 +12,7 @@ class Player : public Entity
 		ST_IDLE,
 		ST_FORWARD,
 		ST_BACKWARD,
-		ST_HADOKEN,
+		ST_SHORYUKEN,
 
 		ST_UNKNOWN
 	};
@@ -21,6 +21,8 @@ public:
 
 	//player's current frame (entity)
 	SDL_Rect current_frame = { 0,0,0,0 };
+
+	void OnComboCompleted(ComboType type);
 
 private:
 
@@ -31,10 +33,13 @@ private:
 	ctAnimation idle = ctAnimation();
 	ctAnimation forward = ctAnimation();
 	ctAnimation backward = ctAnimation();
-	ctAnimation hadoken = ctAnimation();
+	ctAnimation shoryuken = ctAnimation();
 
 	//animations velocity
-	uint idle_vel = 0u, forward_vel = 0u, backward_vel = 0u, hadoken_vel = 0u;
+	uint idle_vel = 0u, forward_vel = 0u, backward_vel = 0u, shoryuken_vel = 0u;
+
+	//action examples helpers
+	bool performing_shoryuken = false;
 
 private:
 

@@ -10,6 +10,8 @@
 #include "ctEntities.h"
 #include "ctTimer.h"
 
+#include "Combo.h"
+
 #include "Player.h"
 
 
@@ -31,8 +33,8 @@ Player::Player(int x, int y, EntityType type) : Entity(x, y, type) {
 			LoadAnimation(animations, &forward);
 		else if (tmp == "backward")
 			LoadAnimation(animations, &backward);
-		else if (tmp == "hadoken")
-			LoadAnimation(animations, &hadoken);
+		else if (tmp == "shoryuken")
+			LoadAnimation(animations, &shoryuken);
 	}
 
 	animation = &idle;
@@ -48,8 +50,6 @@ Player::~Player()
 // Called each loop iteration
 void Player::Update(float dt)
 {
-
-	current_state = PlayerState::ST_IDLE;
 	
 	if (dt > 0)
 	{
@@ -59,18 +59,34 @@ void Player::Update(float dt)
 		SetPlayerAnimationsSpeed(dt);
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-		position.x += 2;
-		this->current_state = PlayerState::ST_FORWARD;
-	}else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-		position.x -= 2;
-		this->current_state = PlayerState::ST_BACKWARD;
-	}else if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) {
-		this->current_state = PlayerState::ST_HADOKEN;
+	if (!performing_shoryuken) {
+
+		current_state = PlayerState::ST_IDLE;
+
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+			position.x += 2;
+			this->current_state = PlayerState::ST_FORWARD;
+		}
+		else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+			position.x -= 2;
+			this->current_state = PlayerState::ST_BACKWARD;
+		}
+		else if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) {
+			this->current_state = PlayerState::ST_SHORYUKEN;
+		}
+		else if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP) {
+			shoryuken.Reset();
+		}
 	}
-	else if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP) {
-		hadoken.Reset();
+	else {
+		current_state = PlayerState::ST_SHORYUKEN;
+		if (shoryuken.Finished()) {
+			performing_shoryuken = false;
+			shoryuken.Reset();
+		}
 	}
+
+	
 
 	switch (current_state)
 	{
@@ -83,11 +99,21 @@ void Player::Update(float dt)
 	case Player::ST_BACKWARD:
 		animation = &backward;
 		break;
-	case Player::ST_HADOKEN:
-		animation = &hadoken;
+	case Player::ST_SHORYUKEN:
+		animation = &shoryuken;
 		break;
 	case Player::ST_UNKNOWN:
 		break;
+	default:
+		break;
+	}
+}
+
+void Player::OnComboCompleted(ComboType type) {
+	switch (type)
+	{
+	case SHORYUKEN:
+		performing_shoryuken = true;
 	default:
 		break;
 	}
@@ -98,7 +124,7 @@ void Player::SetPlayerAnimationsSpeed(float dt)
 	idle.speed = idle_vel * dt;
 	forward.speed = forward_vel * dt;
 	backward.speed = backward_vel * dt;
-	hadoken.speed = hadoken_vel * dt;;
+	shoryuken.speed = shoryuken_vel * dt;;
 }
 
 void Player::SetEntitiesSpeed(float dt) 
@@ -106,7 +132,7 @@ void Player::SetEntitiesSpeed(float dt)
 	idle_vel = idle.speed;
 	forward_vel = forward.speed;
 	backward_vel = backward.speed;
-	hadoken_vel = hadoken.speed;
+	shoryuken_vel = shoryuken.speed;
 
 	key_entities_speed = true;
 }

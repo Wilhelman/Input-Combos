@@ -13,6 +13,7 @@ class ctApp;
 struct Collider;
 class UIElement;
 enum UI_State;
+enum ComboType;
 
 class ctModule
 {

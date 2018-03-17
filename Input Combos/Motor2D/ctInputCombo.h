@@ -11,15 +11,12 @@
 using namespace std;
 
 class InputEvent;
+class Combo;
 enum EventType;
 
 // ---------------------------------------------------
 class ctInputCombo : public ctModule
 {
-
-	struct Combo {
-		vector<InputEvent*> input_events;
-	};
 
 public:
 
@@ -48,8 +45,6 @@ private:
 	InputEvent* GetInputEventWithActionType(EventType type);
 
 	InputEvent* GetInputEventWithActionTypeAndTimeLimit(EventType type, double time_limit);
-
-	bool CheckForSolvedCombo(Combo* combo_to_check, list<InputEvent*> event_chain);
 
 private:
 

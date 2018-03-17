@@ -6,6 +6,8 @@
 #include <vector>
 #include <string>
 
+enum ComboType;
+
 enum EntityType
 {
 	PLAYER,

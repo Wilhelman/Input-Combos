@@ -13,7 +13,7 @@ enum EventType {
 	LIGHT_KICK,
 	HEAVY_KICK,
 
-	NO_TYPE
+	NO_EVENT_TYPE
 };
 
 // ---------------------------------------------------
@@ -45,7 +45,7 @@ public:
 
 private:
 
-	EventType type = EventType::NO_TYPE;
+	EventType type = EventType::NO_EVENT_TYPE;
 	ctPerfTimer timer;
 	double time_limit = 0.0;
 	double time_since_born = 0.0;

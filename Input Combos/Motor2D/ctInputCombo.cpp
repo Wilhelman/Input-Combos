@@ -3,10 +3,13 @@
 #include "ctApp.h"
 #include "ctInput.h"
 #include "ctRender.h"
-
 #include "ctInputCombo.h"
-#include "InputEvent.h"
 #include "ctPerfTimer.h"
+#include "ctEntities.h"
+#include "Player.h"
+
+#include "InputEvent.h"
+#include "Combo.h"
 
 ctInputCombo::ctInputCombo() : ctModule()
 {
@@ -24,6 +27,36 @@ bool ctInputCombo::Awake(pugi::xml_node& conf)
 
 	LOG("Get up Input Combo!");
 
+
+	for (pugi::xml_node combo_node = conf.child("combo"); combo_node && ret; combo_node = combo_node.next_sibling("combo"))
+	{
+		Combo* tmp_combo = new Combo();
+		std::string tmp(combo_node.attribute("type").as_string());
+
+		if (tmp == "SHORYUKEN")
+			tmp_combo->SetType(ComboType::SHORYUKEN);
+		//else if (tmp == "forward")
+			//LoadAnimation(animations, &forward);
+
+		for (pugi::xml_node input_node = combo_node.child("input_event"); input_node && ret; input_node = input_node.next_sibling("input_event"))
+		{
+			EventType tmp_type = EventType::NO_EVENT_TYPE;
+
+			std::string tmp_event(input_node.attribute("type").as_string());
+
+			if (tmp_event == "RIGHT")
+				tmp_type = EventType::RIGHT;
+			else if (tmp_event == "LEFT")
+				tmp_type = EventType::LEFT;
+
+			InputEvent* tmp_input_event = new InputEvent(input_node.attribute("time_limit").as_double(), tmp_type);
+
+			tmp_combo->LoadInputEvent(tmp_input_event);
+		}
+
+		this->combo_list.push_back(tmp_combo);
+	}
+
 	return ret;
 }
 
@@ -34,18 +67,6 @@ bool ctInputCombo::Start()
 
 	LOG("Start Input Combo!");
 
-	Combo *test_combo = new Combo();
-
-	InputEvent* tmp_right = this->GetInputEventWithActionTypeAndTimeLimit(RIGHT, 1000);
-
-	test_combo->input_events.push_back(tmp_right);
-
-	InputEvent* tmp_left = this->GetInputEventWithActionTypeAndTimeLimit(LEFT, 1000);
-
-	test_combo->input_events.push_back(tmp_left);
-
-	combo_list.push_back(test_combo);
-
 	return true;
 }
 
@@ -54,17 +75,17 @@ bool ctInputCombo::PreUpdate()
 {
 	bool ret = true;
 
-	//check for combo
+	//check for completed combo
 	vector<Combo*>::const_iterator it = combo_list.begin();
 
 	while (it != combo_list.end()) {
-		this->CheckForSolvedCombo((*it),this->event_chain);
+
+		if ((*it)->CheckForSolvedCombo(this->event_chain)) 
+			App->entities->GetPlayer()->OnComboCompleted((*it)->GetType());
+		
 		it++;
+
 	}
-
-
-
-
 
 	return ret;
 }
@@ -104,7 +125,7 @@ bool ctInputCombo::PostUpdate()
 		it++;
 	}
 
-	LOG("Event Chain size: %i", event_chain.size());
+	//LOG("Event Chain size: %i", event_chain.size());
 
 	return ret;
 }
@@ -125,15 +146,26 @@ bool ctInputCombo::CleanUp()
 
 	event_chain.clear();
 
+	vector<Combo*>::const_iterator it_combo = combo_list.begin();
+
+	while (it_combo != combo_list.end()) {
+		delete *it_combo;
+		it_combo++;
+	}
+
+	combo_list.clear();
+
 	return ret;
 }
 
 InputEvent* ctInputCombo::GetInputEventWithActionType(EventType type) {
 
-	InputEvent* last_input_event = event_chain.back();
+	
 
-	if(last_input_event != nullptr)
+	if (event_chain.size() > 1) {
+		InputEvent* last_input_event = event_chain.back();
 		last_input_event->StopTimer();
+	}
 
 	ctPerfTimer tmp_timer;
 	tmp_timer.Start();
@@ -143,50 +175,6 @@ InputEvent* ctInputCombo::GetInputEventWithActionType(EventType type) {
 InputEvent* ctInputCombo::GetInputEventWithActionTypeAndTimeLimit(EventType type, double time_limit) {
 
 	return new InputEvent(time_limit, type);
-}
-
-bool ctInputCombo::CheckForSolvedCombo(Combo* combo_to_check, list<InputEvent*> event_chain) {
-	
-	list<InputEvent*>::const_iterator it_event_chain = event_chain.begin();
-	vector<InputEvent*>::const_iterator it_combo_to_check = combo_to_check->input_events.begin();
-	
-	while (it_event_chain != event_chain.end()) {
-
-		while (it_combo_to_check != combo_to_check->input_events.end()) {
-
-			//Is this combo input equal to event_chain ?
-			if (((*it_combo_to_check)->GetType() == (*it_event_chain)->GetType())) {
-
-				//Is this combo input valid for a time limit ?
-				if ((*it_combo_to_check)->GetTimeLimit() >= (*it_event_chain)->GetTimeSinceBorn()) {
-
-					//Is the combo completed?
-					if ((*it_combo_to_check) == combo_to_check->input_events.back()) {
-						return true;
-					}
-					else { //Then continue checking the rest of inputs!
-
-						if ((*it_event_chain) == event_chain.back())
-							break;
-
-						it_combo_to_check++;
-						it_event_chain++;
-						continue;
-					}
-				}
-			}
-
-			if ((*it_event_chain) == event_chain.back())
-				break;
-
-			it_event_chain++;
-		}
-
-		it_event_chain++;
-	}
-	
-	//No combo solved?
-	return false;
 }
 
 // class Input Combos ---------------------------------------------------
