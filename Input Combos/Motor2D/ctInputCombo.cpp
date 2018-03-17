@@ -104,27 +104,27 @@ bool ctInputCombo::PostUpdate()
 {
 	bool ret = true;
 
-	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN) {
+	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN || App->input->gamepad.CROSS_RIGHT == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
 		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::RIGHT);
 		event_chain.push_back(tmp_input_event);
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN) {
+	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN || App->input->gamepad.CROSS_LEFT == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
 		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::LEFT);
 		event_chain.push_back(tmp_input_event);
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN) {
+	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN || App->input->gamepad.CROSS_DOWN == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
 		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::DOWN);
 		event_chain.push_back(tmp_input_event);
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN) {
+	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN || App->input->gamepad.X == GAMEPAD_STATE::PAD_BUTTON_DOWN || App->input->gamepad.Y == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
 		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::PUNCH);
 		event_chain.push_back(tmp_input_event);
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN) {
+	if (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN || App->input->gamepad.B == GAMEPAD_STATE::PAD_BUTTON_DOWN || App->input->gamepad.A == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
 		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::KICK);
 		event_chain.push_back(tmp_input_event);
 	}
@@ -143,7 +143,7 @@ bool ctInputCombo::PostUpdate()
 		it++;
 	}
 
-	LOG("Event Chain size: %i", event_chain.size());
+	//LOG("Event Chain size: %i", event_chain.size());
 
 	return ret;
 }

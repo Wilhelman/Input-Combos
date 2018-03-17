@@ -59,7 +59,7 @@
 					<frame x="74" y="128" width="64" height="92" />
 					<frame x="4" y="128" width="64" height="92" />
 				</animation>
-				<animation name="shoryuken" speed="5.1" loop="false">
+				<animation name="shoryuken" speed="3.1" loop="false">
 					<frame x="22" y="1785" width="68" height="126" />
 					<frame x="112" y="1785" width="68" height="126" />
 					<frame x="198" y="1785" width="68" height="126" />
@@ -67,7 +67,7 @@
 					<frame x="366" y="1785" width="68" height="126" />
 					<frame x="451" y="1785" width="68" height="126" />
 				</animation>
-				<animation name="tatsumaki" speed="5.1" loop="false">
+				<animation name="tatsumaki" speed="3.1" loop="false">
 					<frame x="12" y="1672" width="95" height="106" />
 					<frame x="106" y="1672" width="95" height="106" />
 					<frame x="184" y="1672" width="95" height="106" />

@@ -53,11 +53,8 @@ private:
 	//chain used to check the combos
 	list<InputEvent*> event_chain;
 
-
+	//list of all combos posible, loaded by xml
 	vector<Combo*> combo_list;
-
-	//non functional chain, used to
-	list<InputEvent*> event_record;
 
 };
 

@@ -78,12 +78,14 @@ void Player::Update(float dt)
 	else {
 		current_state = PlayerState::ST_IDLE;
 
-		if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT) {
-			position.x += 2;
+		if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT || App->input->gamepad.CROSS_RIGHT == GAMEPAD_STATE::PAD_BUTTON_REPEAT) {
+			if (position.x < 650)
+				position.x += 2;
 			this->current_state = PlayerState::ST_FORWARD;
 		}
-		else if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT) {
-			position.x -= 2;
+		else if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT || App->input->gamepad.CROSS_LEFT == GAMEPAD_STATE::PAD_BUTTON_REPEAT) {
+			if(position.x > 400)
+				position.x -= 2;
 			this->current_state = PlayerState::ST_BACKWARD;
 		}
 	}

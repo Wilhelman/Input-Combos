@@ -3,6 +3,8 @@
 
 #include "ctModule.h"
 
+#include "SDL/include/SDL_gamecontroller.h"
+
 //#define NUM_KEYS 352
 #define NUM_MOUSE_BUTTONS 5
 //#define LAST_KEYS_PRESSED_BUFFER 50
@@ -23,6 +25,28 @@ enum ctKeyState
 	KEY_DOWN,
 	KEY_REPEAT,
 	KEY_UP
+};
+
+enum GAMEPAD_STATE
+{
+	PAD_BUTTON_IDLE = 0,
+	PAD_BUTTON_DOWN,
+	PAD_BUTTON_REPEAT,
+	PAD_BUTTON_KEY_UP
+};
+
+struct Gamepad {
+
+	GAMEPAD_STATE A = PAD_BUTTON_IDLE;
+	GAMEPAD_STATE B;
+	GAMEPAD_STATE Y;
+	GAMEPAD_STATE X;
+
+	GAMEPAD_STATE CROSS_UP;
+	GAMEPAD_STATE CROSS_DOWN;
+	GAMEPAD_STATE CROSS_LEFT;
+	GAMEPAD_STATE CROSS_RIGHT;
+
 };
 
 class ctInput : public ctModule
@@ -66,6 +90,9 @@ public:
 	void GetWorldMousePosition(int &x, int &y);
 	void GetMouseMotion(int& x, int& y);
 
+	Gamepad gamepad;
+	void buttonForGamepad();
+
 private:
 	bool		windowEvents[WE_COUNT];
 	ctKeyState*	keyboard = nullptr;
@@ -74,6 +101,9 @@ private:
 	int			mouse_motion_y = 0;
 	int			mouse_x = 0;
 	int			mouse_y = 0;
+
+	SDL_GameController *controller;
+
 };
 
 #endif // __ctINPUT_H__
