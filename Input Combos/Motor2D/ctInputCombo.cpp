@@ -97,18 +97,44 @@ bool ctInputCombo::PostUpdate()
 {
 	bool ret = true;
 
-	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN) {
-		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::RIGHT);
-		event_chain.push_back(tmp_input_event);
-	}
-
-	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN) {
+	if (App->input->GetPadXAxis() < 0)
+	{
 		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::LEFT);
 		event_chain.push_back(tmp_input_event);
 	}
-
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
-		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::HEAVY_KICK);
+	else if (App->input->GetPadXAxis() > 0)
+	{
+		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::RIGHT);
+		event_chain.push_back(tmp_input_event);
+	}
+	else if (App->input->GetPadYAxis() < 0)
+	{
+		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::UP);
+		event_chain.push_back(tmp_input_event);
+	}
+	else if (App->input->GetPadYAxis() > 0)
+	{
+		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::DOWN);
+		event_chain.push_back(tmp_input_event);
+	}
+	else if (App->input->GetPadXAxis() > 0 && App->input->GetPadYAxis() < 0)
+	{
+		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::UP_RIGHT);
+		event_chain.push_back(tmp_input_event);
+	}
+	else if (App->input->GetPadXAxis() < 0 && App->input->GetPadYAxis() < 0)
+	{
+		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::UP_LEFT);
+		event_chain.push_back(tmp_input_event);
+	}
+	else if (App->input->GetPadXAxis() > 0 && App->input->GetPadYAxis() > 0)
+	{
+		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::DOWN_RIGHT);
+		event_chain.push_back(tmp_input_event);
+	}
+	else if (App->input->GetPadXAxis() < 0 && App->input->GetPadYAxis() > 0)
+	{
+		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::DOWN_LEFT);
 		event_chain.push_back(tmp_input_event);
 	}
 

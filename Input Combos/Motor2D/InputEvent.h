@@ -7,7 +7,11 @@ enum EventType {
 	RIGHT = 0,
 	LEFT,
 	UP,
+	UP_RIGHT,
+	UP_LEFT,
 	DOWN,
+	DOWN_RIGHT,
+	DOWN_LEFT,
 	PUNCH,
 	KICK,
 
