@@ -3,13 +3,8 @@
 
 #include "ctModule.h"
 
-#include "SDL\include\SDL_gamecontroller.h"
-#include "SDL\include\SDL_scancode.h"
-
 //#define NUM_KEYS 352
 #define NUM_MOUSE_BUTTONS 5
-#define NUM_PAD_BUTTONS 16
-#define PAD_DEAD_ZONE 10000
 //#define LAST_KEYS_PRESSED_BUFFER 50
 
 struct SDL_Rect;
@@ -66,21 +61,6 @@ public:
 		return mouse_buttons[id - 1];
 	}
 
-	ctKeyState GetPadButtonDown(int id) const
-	{
-		return pad_buttons[id - 1];
-	}
-
-	float GetPadXAxis() const
-	{
-		return x_axis;
-	}
-
-	float GetPadYAxis() const
-	{
-		return y_axis;
-	}
-
 	// Get mouse / axis position
 	void GetMousePosition(int &x, int &y);
 	void GetWorldMousePosition(int &x, int &y);
@@ -90,20 +70,10 @@ private:
 	bool		windowEvents[WE_COUNT];
 	ctKeyState*	keyboard = nullptr;
 	ctKeyState	mouse_buttons[NUM_MOUSE_BUTTONS];
-	ctKeyState	pad_buttons[NUM_PAD_BUTTONS];
 	int			mouse_motion_x = 0;
 	int			mouse_motion_y = 0;
 	int			mouse_x = 0;
 	int			mouse_y = 0;
-	float		x_axis = 0;
-	float		y_axis = 0;
-
-	SDL_Joystick* pad_controller = NULL;
-
-	SDL_Haptic* pad_controller_haptic = NULL;
-
-	bool is_keyboard_available = false;
-
 };
 
 #endif // __ctINPUT_H__

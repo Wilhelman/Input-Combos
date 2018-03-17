@@ -57,7 +57,6 @@ bool ctInput::PreUpdate()
 	{
 		if (keys[i] == 1)
 		{
-			is_keyboard_available = true;
 			if (keyboard[i] == KEY_IDLE)
 				keyboard[i] = KEY_DOWN;
 			else
@@ -79,15 +78,6 @@ bool ctInput::PreUpdate()
 
 		if (mouse_buttons[i] == KEY_UP)
 			mouse_buttons[i] = KEY_IDLE;
-	}
-
-	for (int i = 0; i < NUM_PAD_BUTTONS; ++i)
-	{
-		if (pad_buttons[i] == KEY_DOWN)
-			pad_buttons[i] = KEY_REPEAT;
-
-		if (pad_buttons[i] == KEY_UP)
-			pad_buttons[i] = KEY_IDLE;
 	}
 
 	while (SDL_PollEvent(&event) != 0)
@@ -136,44 +126,6 @@ bool ctInput::PreUpdate()
 			mouse_y = event.motion.y / scale;
 			//LOG("Mouse motion x %d y %d", mouse_motion_x, mouse_motion_y);
 			break;
-
-		case SDL_JOYAXISMOTION:
-			if (event.jaxis.which == 0)
-				is_keyboard_available = false;
-			{
-				if (event.jaxis.axis == 0)
-				{
-					if (event.jaxis.value < -PAD_DEAD_ZONE || event.jaxis.value > PAD_DEAD_ZONE)
-						x_axis = event.jaxis.value;
-					else
-						x_axis = 0;
-				}
-				else if (event.jaxis.axis == 1)
-				{
-					if (event.jaxis.value < -PAD_DEAD_ZONE || event.jaxis.value > PAD_DEAD_ZONE)
-						y_axis = event.jaxis.value;
-					else
-						y_axis = 0;
-				}
-			}
-			break;
-
-		case SDL_JOYBUTTONDOWN:
-			if (event.jbutton.which == 0)
-			{
-				// RUMBLE TEST
-				if (SDL_HapticRumblePlay(pad_controller_haptic, 0.75, 500) != 0)
-				{
-					printf("Warning: Unable to play rumble! %s\n", SDL_GetError());
-				}
-				is_keyboard_available = false;
-				pad_buttons[event.jbutton.button - 1] = KEY_DOWN;
-			}
-			break;
-
-		case SDL_JOYBUTTONUP:
-			if (event.jbutton.which == 0)
-				pad_buttons[event.jbutton.button - 1] = KEY_UP;
 		}
 	}
 
