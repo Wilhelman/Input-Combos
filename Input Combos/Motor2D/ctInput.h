@@ -30,6 +30,36 @@ enum ctKeyState
 	KEY_UP
 };
 
+enum AxisState
+{
+	RIGHT_AXIS = 0,
+	LEFT_AXIS,
+	UP_AXIS,
+	DOWN_AXIS,
+
+	RIGHT_AXIS_REPEAT,
+	LEFT_AXIS_REPEAT,
+	UP_AXIS_REPEAT,
+	DOWN_AXIS_REPEAT,
+
+	NO_STATE
+};
+
+enum GAMEPAD_STATE
+{
+	PAD_BUTTON_IDLE = 0,
+	PAD_BUTTON_DOWN,
+	PAD_BUTTON_REPEAT,
+	PAD_BUTTON_KEY_UP
+};
+
+struct Gamepad {
+	GAMEPAD_STATE A = PAD_BUTTON_IDLE;
+	GAMEPAD_STATE B;
+	GAMEPAD_STATE Y;
+	GAMEPAD_STATE X;
+};
+
 class ctInput : public ctModule
 {
 
@@ -86,6 +116,11 @@ public:
 	void GetWorldMousePosition(int &x, int &y);
 	void GetMouseMotion(int& x, int& y);
 
+	AxisState x_axis_state = NO_STATE;
+	AxisState y_axis_state = NO_STATE;
+
+	Gamepad gamepad;
+
 private:
 	bool		windowEvents[WE_COUNT];
 	ctKeyState*	keyboard = nullptr;
@@ -98,9 +133,10 @@ private:
 	float		x_axis = 0;
 	float		y_axis = 0;
 
-	SDL_Joystick* pad_controller = NULL;
+	
 
-	SDL_Haptic* pad_controller_haptic = NULL;
+	SDL_Joystick* pad_controller = nullptr;
+	SDL_GameController *controller;
 
 	bool is_keyboard_available = false;
 

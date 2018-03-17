@@ -63,19 +63,13 @@ void Player::Update(float dt)
 
 		current_state = PlayerState::ST_IDLE;
 
-		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT || App->input->x_axis_state == RIGHT_AXIS_REPEAT) {
 			position.x += 2;
 			this->current_state = PlayerState::ST_FORWARD;
 		}
-		else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+		else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT || App->input->x_axis_state == LEFT_AXIS_REPEAT) {
 			position.x -= 2;
 			this->current_state = PlayerState::ST_BACKWARD;
-		}
-		else if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) {
-			this->current_state = PlayerState::ST_SHORYUKEN;
-		}
-		else if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP) {
-			shoryuken.Reset();
 		}
 	}
 	else {

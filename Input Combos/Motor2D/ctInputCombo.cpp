@@ -97,44 +97,47 @@ bool ctInputCombo::PostUpdate()
 {
 	bool ret = true;
 
-	if (App->input->GetPadXAxis() < 0)
-	{
-		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::LEFT);
-		event_chain.push_back(tmp_input_event);
+	if (App->input->gamepad.A == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
+		LOG("asd");
 	}
-	else if (App->input->GetPadXAxis() > 0)
-	{
-		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::RIGHT);
-		event_chain.push_back(tmp_input_event);
-	}
-	else if (App->input->GetPadYAxis() < 0)
-	{
-		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::UP);
-		event_chain.push_back(tmp_input_event);
-	}
-	else if (App->input->GetPadYAxis() > 0)
-	{
-		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::DOWN);
-		event_chain.push_back(tmp_input_event);
-	}
-	else if (App->input->GetPadXAxis() > 0 && App->input->GetPadYAxis() < 0)
+
+	if (App->input->x_axis_state == RIGHT_AXIS && App->input->y_axis_state == UP_AXIS)
 	{
 		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::UP_RIGHT);
 		event_chain.push_back(tmp_input_event);
 	}
-	else if (App->input->GetPadXAxis() < 0 && App->input->GetPadYAxis() < 0)
+	else if (App->input->x_axis_state == LEFT_AXIS && App->input->y_axis_state == UP_AXIS)
 	{
 		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::UP_LEFT);
 		event_chain.push_back(tmp_input_event);
 	}
-	else if (App->input->GetPadXAxis() > 0 && App->input->GetPadYAxis() > 0)
+	else if (App->input->x_axis_state == RIGHT_AXIS && App->input->y_axis_state == DOWN_AXIS)
 	{
 		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::DOWN_RIGHT);
 		event_chain.push_back(tmp_input_event);
 	}
-	else if (App->input->GetPadXAxis() < 0 && App->input->GetPadYAxis() > 0)
+	else if (App->input->x_axis_state == LEFT_AXIS && App->input->y_axis_state == DOWN_AXIS)
 	{
 		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::DOWN_LEFT);
+		event_chain.push_back(tmp_input_event);
+	}else if (App->input->x_axis_state == LEFT_AXIS)
+	{
+		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::LEFT);
+		event_chain.push_back(tmp_input_event);
+	}
+	else if (App->input->x_axis_state == RIGHT_AXIS)
+	{
+		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::RIGHT);
+		event_chain.push_back(tmp_input_event);
+	}
+	else if (App->input->y_axis_state == UP_AXIS)
+	{
+		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::UP);
+		event_chain.push_back(tmp_input_event);
+	}
+	else if (App->input->y_axis_state == DOWN_AXIS)
+	{
+		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::DOWN);
 		event_chain.push_back(tmp_input_event);
 	}
 
@@ -153,7 +156,7 @@ bool ctInputCombo::PostUpdate()
 		it++;
 	}
 
-	LOG("Event Chain size: %i", event_chain.size());
+	//LOG("Event Chain size: %i", event_chain.size());
 
 	return ret;
 }
