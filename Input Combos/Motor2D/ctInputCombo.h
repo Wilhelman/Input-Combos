@@ -14,7 +14,7 @@ class InputEvent;
 class Combo;
 enum EventType;
 
-// ---------------------------------------------------
+
 class ctInputCombo : public ctModule
 {
 
@@ -42,18 +42,21 @@ public:
 
 private:
 	
+	// Generate one InputEvent of the given type (used for the incoming input)
 	InputEvent* GetInputEventWithActionType(EventType type);
 
+	// Generate one InputEvent of the given type and with limitation of time (used for defined combo)
 	InputEvent* GetInputEventWithActionTypeAndTimeLimit(EventType type, double time_limit);
 
+	// Cleans all the inputs events of the event_chain list
 	void CleanEventChain();
 
 private:
 
-	//chain used to check the combos
+	// Chain used to check the combos
 	list<InputEvent*> event_chain;
 
-	//list of all combos posible, loaded by xml
+	// List of all combos posible, loaded by xml
 	vector<Combo*> combo_list;
 
 };
