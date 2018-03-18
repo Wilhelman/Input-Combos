@@ -27,7 +27,7 @@ _Street Fighter - Ryu vs Ken_
 In Street Fighter, the user is able to perform a variety of combos already defined. Some keys of their input combo system are:
 
 * To make a combo it is not enough to press a defined series of keys correctly, it must be in correct timing and in a limited time.
-* The pool of possible inputs is not excessively long.
+* The pool of possible inputs can be pretty long.
 
 ## Heavy Rain
 
