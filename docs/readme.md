@@ -8,7 +8,9 @@ subject Project 2, under supervision of lecturer
 # **Intro to the problem** 
 
 An input combo system can vary greatly from one video game to another. That's why we have not established a fixed system to follow when we're developing a system for our video game.
+
 In this guide we will investigate about the input combos system that some video games have developed, we will discuss the different techniques that can be applied and, finally, we will make step by step our input system combo.
+
 My intention is to make the system as flexible and complete as possible, which can be adapted to any project with a few simple changes. All the development exposed on this page has been done from scratch with techniques developed from the research done before this guide.
 
 # Different approaches by different games
@@ -116,7 +118,8 @@ In case of finding a match, we will eliminate or not the list of our last events
 
 # Our approach step by step
 
-Since in a fight / beat em 'up genre the input combo system becomes more complex due to the time factor between events, we are going to create a combo system similar to the one that a videogame of this genre would use, although it will be ready to adapt to any other combo system in an easy way.
+Since in a fight / beat em 'up genre the input combo system becomes more complex due to the time factor between events, we are going to create a combo system similar to the one that a videogame of this genre would use, although it will be ready to adapt to any other combo system in an easy way. 
+We are going to use vectors and lists to store predefined combos and to organize the volatile chain of events.
 
 ![Example final](images/final.gif)
 
@@ -133,10 +136,32 @@ First let's locate, all the magic of this system will occur in the folder _Input
 
 ## TODO 1
 
+### Objective
 
+* Create the InputEvents from its constructor. Use the "GetInputEventWithActionType" function for each type of input.
+* You've to start the timer for the new InputEvent and call the constructor of the InputEvent class.
+_Hint: You've to choose between two constructors, check InputEvent.h!_
+* Finally add the InputEvent to the volatile chain!
 
+### Solution
 
-RESOLVED TODO 1: mimimi
+If you have built the InputEvents properly, try to generate some InputEvent with the keyboard or gamepad (Controls in the readme). If everything works correctly, they will be displayed at the bottom of the screen.
+
+![Example1](images/solvedTODO1.gif)
+
+## TODO 2
+
+### Objective
+
+* We must eliminate the inputs of the volatile chain after a certain time.
+* Iterate between all the InputEvents stored in event_chain and compare the timer of those inputs with "GENERIC_TIME_LIMIT".
+* Delete those that go over time.
+
+### Solution
+
+Ahora los inputs que generas deberían ser borrados al cabo de 2000 milliseconds (GENERIC_TIME_LIMIT).
+
+![Example2](images/solvedTODO2.gif)
 
 Optional Homework for practicing!
 
