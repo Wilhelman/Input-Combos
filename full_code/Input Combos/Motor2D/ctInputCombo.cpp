@@ -11,7 +11,7 @@
 #include "InputEvent.h"
 #include "Combo.h"
 
-#include "Brofiler\Brofiler.h"
+//#include "Brofiler\Brofiler.h"
 
 ctInputCombo::ctInputCombo() : ctModule()
 {
@@ -81,7 +81,7 @@ bool ctInputCombo::Start()
 // Called before all Updates
 bool ctInputCombo::PreUpdate()
 {
-	BROFILER_CATEGORY("Combo comparison", Profiler::Color::Green);
+	//BROFILER_CATEGORY("Combo comparison", Profiler::Color::Green);
 
 	bool ret = true;
 
@@ -106,7 +106,7 @@ bool ctInputCombo::PreUpdate()
 // Called after all Updates
 bool ctInputCombo::PostUpdate()
 {
-	BROFILER_CATEGORY("Input event entry + delete ", Profiler::Color::Blue);
+	//BROFILER_CATEGORY("Input event entry + delete ", Profiler::Color::Blue);
 
 	bool ret = true;
 
