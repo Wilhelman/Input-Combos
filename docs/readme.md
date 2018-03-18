@@ -191,16 +191,20 @@ We arrived at the most complicated part, but if you have arrived here, you will 
   * Is this combo input equal to event_chain ?
   * Is this combo input valid for a time limit ?
   * Is the combo completed ?
+  
 If all the answers are yes, the combo has been performed correctly. Obviously you have to control the denials!
+
 * Iterate between all the combos in the list
 * In case the combo is completed, call the function _"App->entities->GetPlayer()->OnComboCompleted()"_ and pass the combo type.
 To verify that it works, do one of the two combos.The controls are in the readme.
 
 ### Solution
 
-If the comparison has been made correctly, the combo movement will be executed. But wait a second... something is wrong.
+If the comparison has been made correctly, the combo movement will be executed.
 
 ![Example4](images/solvedTODO4.gif)
+
+But wait a second, something is wrong...
 
 ## TODO 5
 
@@ -211,6 +215,8 @@ We didn't clean the volatile input chain, that was it!
 * Clean the volatile input chain after the combo is executed. There is already a function to do it!
 
 ### Solution
+
+Now the function that compares the list of combos and the volatile chain does not make the player receive multi-calls, it only calls it once and then the temporary chain is eliminated.
 
 ![Example5](images/solvedTODO5.gif)
 
