@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<config>
+	<app framerate_cap="60">
+		<title>Input Combos Guide</title>
+		<organization>Guillermo García Subirana</organization>
+	</app>
+	<renderer>
+		<vsync value="true" />
+	</renderer>
+	<ui>
+		<atlas file="textures/ui/ui_atlas.png" />
+	</ui>
+	<window>
+		<resolution width="1024" height="760" scale="3" />
+		<fullscreen value="false" />
+		<borderless value="false" />
+		<resizable value="false" />
+		<fullscreen_window value="false" />
+	</window>
+	<music fx="100" music="100"></music>
+	<input_combo>
+		<combo type="SHORYUKEN">
+			<input_event type="RIGHT" time_limit="1000"/>
+			<input_event type="DOWN" time_limit="1000"/>
+			<input_event type="RIGHT" time_limit="1000"/>
+			<input_event type="PUNCH" time_limit="1000"/>
+		</combo>
+		<combo type="TATSUMAKI">
+			<input_event type="DOWN" time_limit="1000"/>
+			<input_event type="LEFT" time_limit="1000"/>
+			<input_event type="KICK" time_limit="1000"/>
+		</combo>
+	</input_combo>
+	<entities>
+		<spritesheetSource name="textures/ryu.png" />
+		<player>
+			<fxPlayerJump name="audio/fx/jump_fx.wav" />
+			<animations>
+				<animation name="idle" speed="3.5" loop="true">
+					<frame x="7" y="11" width="61" height="93" />
+					<frame x="93" y="11" width="61" height="93" />
+					<frame x="183" y="11" width="61" height="93" />
+					<frame x="277" y="11" width="61" height="93" />
+					<frame x="366" y="11" width="61" height="93" />
+				</animation>
+				<animation name="forward" speed="5.1" loop="true">
+					<frame x="4" y="128" width="64" height="92" />
+					<frame x="74" y="128" width="64" height="92" />
+					<frame x="162" y="128" width="64" height="92" />
+					<frame x="258" y="128" width="64" height="92" />
+					<frame x="344" y="131" width="64" height="92" />
+					<frame x="422" y="131" width="64" height="92" />
+				</animation>
+				<animation name="backward" speed="5.1" loop="true">
+					<frame x="422" y="131" width="64" height="92" />
+					<frame x="344" y="131" width="64" height="92" />
+					<frame x="258" y="128" width="64" height="92" />
+					<frame x="162" y="128" width="64" height="92" />
+					<frame x="74" y="128" width="64" height="92" />
+					<frame x="4" y="128" width="64" height="92" />
+				</animation>
+				<animation name="shoryuken" speed="3.1" loop="false">
+					<frame x="22" y="1785" width="68" height="126" />
+					<frame x="112" y="1785" width="68" height="126" />
+					<frame x="198" y="1785" width="68" height="126" />
+					<frame x="288" y="1785" width="68" height="126" />
+					<frame x="366" y="1785" width="68" height="126" />
+					<frame x="451" y="1785" width="68" height="126" />
+				</animation>
+				<animation name="tatsumaki" speed="3.1" loop="false">
+					<frame x="12" y="1672" width="95" height="106" />
+					<frame x="106" y="1672" width="95" height="106" />
+					<frame x="184" y="1672" width="95" height="106" />
+					<frame x="279" y="1672" width="95" height="106" />
+					<frame x="374" y="1672" width="95" height="106" />
+					<frame x="469" y="1672" width="95" height="106" />
+					<frame x="570" y="1672" width="95" height="106" />
+					<frame x="663" y="1672" width="95" height="106" />
+					<frame x="742" y="1672" width="95" height="106" />
+					<frame x="828" y="1672" width="95" height="106" />
+					<frame x="915" y="1672" width="95" height="106" />
+				</animation>
+			</animations>
+		</player>
+	</entities>
+	<ken_stage>
+		<spritesheetSource name="textures/ken_stage.png">
+			<animations>
+				<animation name="flag" speed="4.5" loop="true">
+						<frame x="848" y="208" width="40" height="40" />
+						<frame x="848" y="256" width="40" height="40" />
+						<frame x="848" y="304" width="40" height="40" />
+				</animation>
+				<animation name="girl" speed="4.0" loop="true">
+						<frame x="624" y="16" width="32" height="56" />
+						<frame x="624" y="80" width="32" height="56" />
+						<frame x="624" y="144" width="32" height="56" />
+				</animation>
+				<animation name="two_guys" speed="4.7" loop="true">
+						<frame x="552" y="8" width="64" height="64" />
+						<frame x="552" y="72" width="64" height="64" />
+						<frame x="552" y="136" width="64" height="64" />
+				</animation>
+				<animation name="green_guy" speed="4.5" loop="true">
+						<frame x="664" y="16" width="32" height="56" />
+						<frame x="664" y="80" width="32" height="56" />
+				</animation>
+				<animation name="blue_guy" speed="4.1" loop="true">
+						<frame x="704" y="16" width="48" height="56" />
+						<frame x="704" y="80" width="48" height="56" />
+						<frame x="704" y="144" width="48" height="56" />
+				</animation>
+				<animation name="fedora_guy" speed="4.6" loop="true">
+						<frame x="760" y="16" width="40" height="40" />
+						<frame x="760" y="64" width="40" height="40" />
+						<frame x="760" y="112" width="40" height="40" />
+				</animation>
+				<animation name="pink_guy" speed="4.2" loop="true">
+						<frame x="808" y="24" width="48" height="32" />
+						<frame x="808" y="72" width="48" height="32" />
+						<frame x="808" y="120" width="48" height="32" />
+				</animation>
+			</animations>
+			<rects>
+				<rect name="ground" x="8" y="391" width="896" height="72"/>
+				<rect name="foreground" x="8" y="24" width="521" height="181"/>
+				<rect name="background" x="72" y="208" width="768" height="176"/>
+			</rects>
+		</spritesheetSource>
+	</ken_stage>
+	<file_system>
+		<path>data.zip</path>
+	</file_system>
+</config>
