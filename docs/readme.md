@@ -66,11 +66,21 @@ In case of finding a match, we will eliminate or not the list of our last events
 
 ## Our approach step by step
 
-Since in a fight / beat em 'up genre the input combo system becomes more complex due to the time factor between events, I decided to make a step-by-step guide where we will get to make an input combo system in a efficient and simple way.
+Since in a fight / beat em 'up genre the input combo system becomes more complex due to the time factor between events, we are going to create a combo system similar to the one that a videogame of this genre would use, although it will be ready to adapt to any other combo system in an easy way.
+
+First let's locate, all the magic of this system will occur in the folder _InputComboSystem_. In this folder we'll find three classes:
+
+* **Combo**: In this class we will define and load all the necessary inputs to form a combo. From this class we will also check if a combo has been solved or not.
+
+* **Input Event**: This class will define the type of input (a direction?, an action?). In addition, each input event will have a timer that will allow us to know when the input entered, the time it has taken between that input and the next and finally, the limit that had from one input to another (used in the inputs of the combo).
+
+* **ctInput Combo**: The core of the system. From this class we will collect the inputs, and we will use the two previous classes so that everything works.
+
+
+### TODO 1
 
 
 
-TODO 1: mimimi
 
 RESOLVED TODO 1: mimimi
 
