@@ -59,7 +59,7 @@ bool ctInputCombo::Awake(pugi::xml_node& conf)
 
 			InputEvent* tmp_input_event = new InputEvent(input_node.attribute("time_limit").as_double(), tmp_type);
 
-			tmp_combo->LoadInputEvent(tmp_input_event);
+			tmp_combo->LoadInputEvent(this->GetInputEventWithActionTypeAndTimeLimit(input_node.attribute("time_limit").as_double(), tmp_type));
 		}
 
 		this->combo_list.push_back(tmp_combo);
@@ -113,27 +113,27 @@ bool ctInputCombo::PostUpdate()
 	//TODO 1: Create the InputEvents from its constructor. Use the "GetInputEventWithActionType" function for each type of input.
 
 	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN || App->input->gamepad.CROSS_RIGHT == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
-		event_chain.push_back(this->GetInputEventWithActionType(EventType::RIGHT));
+		
 	}
-
+	
 	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN || App->input->gamepad.CROSS_LEFT == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
-		event_chain.push_back(this->GetInputEventWithActionType(EventType::LEFT));
+		
 	}
-
+	
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN || App->input->gamepad.CROSS_DOWN == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
-		event_chain.push_back(this->GetInputEventWithActionType(EventType::DOWN));
+		
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || App->input->gamepad.CROSS_UP == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
-		event_chain.push_back(this->GetInputEventWithActionType(EventType::UP));
+		
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN || App->input->gamepad.X == GAMEPAD_STATE::PAD_BUTTON_DOWN || App->input->gamepad.Y == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
-		event_chain.push_back(this->GetInputEventWithActionType(EventType::PUNCH));
+		
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN || App->input->gamepad.B == GAMEPAD_STATE::PAD_BUTTON_DOWN || App->input->gamepad.A == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
-		event_chain.push_back(this->GetInputEventWithActionType(EventType::KICK));
+		
 	}
 
 	/*-------CHECK TIME IN ORDER TO DELETE INPUT EVENTS-------*/
@@ -176,9 +176,7 @@ InputEvent* ctInputCombo::GetInputEventWithActionType(EventType type) {
 	///Hint: You've to choose between two constructors, check InputEvent.h!
 
 
-	ctPerfTimer tmp_timer;
-	tmp_timer.Start();
-	return new InputEvent(tmp_timer, type);
+	return nullptr;
 
 }
 

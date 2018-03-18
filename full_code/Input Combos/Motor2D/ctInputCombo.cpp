@@ -57,9 +57,7 @@ bool ctInputCombo::Awake(pugi::xml_node& conf)
 			else if (tmp_event == "KICK")
 				tmp_type = EventType::KICK;
 
-			InputEvent* tmp_input_event = new InputEvent(input_node.attribute("time_limit").as_double(), tmp_type);
-
-			tmp_combo->LoadInputEvent(tmp_input_event);
+			tmp_combo->LoadInputEvent(this->GetInputEventWithActionTypeAndTimeLimit(tmp_type, input_node.attribute("time_limit").as_double()));
 		}
 
 		this->combo_list.push_back(tmp_combo);
@@ -110,37 +108,36 @@ bool ctInputCombo::PostUpdate()
 
 	bool ret = true;
 
+	//TODO 1: Create the InputEvents from its constructor. Use the "GetInputEventWithActionType" function for each type of input.
+
 	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN || App->input->gamepad.CROSS_RIGHT == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
-		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::RIGHT);
-		event_chain.push_back(tmp_input_event);
+		event_chain.push_back(this->GetInputEventWithActionType(EventType::RIGHT));
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN || App->input->gamepad.CROSS_LEFT == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
-		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::LEFT);
-		event_chain.push_back(tmp_input_event);
+		event_chain.push_back(this->GetInputEventWithActionType(EventType::LEFT));
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN || App->input->gamepad.CROSS_DOWN == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
-		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::DOWN);
-		event_chain.push_back(tmp_input_event);
+		event_chain.push_back(this->GetInputEventWithActionType(EventType::DOWN));
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || App->input->gamepad.CROSS_UP == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
-		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::UP);
-		event_chain.push_back(tmp_input_event);
+		event_chain.push_back(this->GetInputEventWithActionType(EventType::UP));
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN || App->input->gamepad.X == GAMEPAD_STATE::PAD_BUTTON_DOWN || App->input->gamepad.Y == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
-		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::PUNCH);
-		event_chain.push_back(tmp_input_event);
+		event_chain.push_back(this->GetInputEventWithActionType(EventType::PUNCH));
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN || App->input->gamepad.B == GAMEPAD_STATE::PAD_BUTTON_DOWN || App->input->gamepad.A == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
-		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::KICK);
-		event_chain.push_back(tmp_input_event);
+		event_chain.push_back(this->GetInputEventWithActionType(EventType::KICK));
 	}
 
-	/*-------CHECK TIME IN ORDER TO DELETE INPUT EVENTS-------*/
+	
+	//TODO 2: We must eliminate the inputs of the volatile chain after a certain time.
+	///Hint: Iterate between all the InputEvents stored in event_chain and compare the 
+	///timer  of those inputs with "GENERIC_TIME_LIMIT". Delete those that go over time.
 
 	list<InputEvent*>::const_iterator it = event_chain.begin();
 
@@ -189,6 +186,8 @@ InputEvent* ctInputCombo::GetInputEventWithActionType(EventType type) {
 		last_input_event->StopTimer();
 	}
 
+	//TODO 1: Start the timer for the new InputEvent and call the constructor of the InputEvent class.
+	///Hint: You've to choose between two constructors, check InputEvent.h!
 	ctPerfTimer tmp_timer;
 	tmp_timer.Start();
 	return new InputEvent(tmp_timer, type);
