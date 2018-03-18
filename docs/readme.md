@@ -160,25 +160,17 @@ I have captured the time by iteration of the input combo system module using _Br
 
 # References
 
-_Devs - talks about trees_
+[Devs - talks about trees - www.gamedev.net](https://www.gamedev.net/forums/topic/581793-input-sequences-for-fighting-game-combos/)
 
-[https://www.gamedev.net/forums/topic/581793-input-sequences-for-fighting-game-combos/](https://www.gamedev.net/forums/topic/581793-input-sequences-for-fighting-game-combos/)
+[Devs - handle tons of inputs - www.reddit.com](https://www.reddit.com/r/gamedev/comments/1yu4px/how_to_properly_handle_tons_of_inputs_in_a/)
 
-_Devs - handle tons of inputs_
+[Commercial indie - What do we do when the combo is completed? - www.reddit.com](https://www.reddit.com/r/gamedev/comments/1iw22v/buffered_input_like_that_found_in_fighting_games/)
 
-[https://www.reddit.com/r/gamedev/comments/1yu4px/how_to_properly_handle_tons_of_inputs_in_a/](https://www.reddit.com/r/gamedev/comments/1yu4px/how_to_properly_handle_tons_of_inputs_in_a/)
+[Use of queue storage for inputs - shivansite.wordpress.com](https://shivansite.wordpress.com/2013/11/13/using-a-queue-for-user-input-events/)
 
-_Commercial indie - What do we do when the combo is completed?_
+[Handle input events - www.stackoverflow.com](https://stackoverflow.com/questions/11894876/how-to-handle-keyboard-event-in-fighting-game-development)
 
-[https://www.reddit.com/r/gamedev/comments/1iw22v/buffered_input_like_that_found_in_fighting_games/](https://www.reddit.com/r/gamedev/comments/1iw22v/buffered_input_like_that_found_in_fighting_games/)
-
-_Use of queue storage for inputs_
-
-[https://shivansite.wordpress.com/2013/11/13/using-a-queue-for-user-input-events/](https://shivansite.wordpress.com/2013/11/13/using-a-queue-for-user-input-events/)
-
-_Devs - talking about ghosting and rollover_
-
-[https://www.reddit.com/r/gamedev/comments/1pdq0g/key_combos_for_fighting_game/](https://www.reddit.com/r/gamedev/comments/1pdq0g/key_combos_for_fighting_game/)
+[Devs - talking about ghosting and rollover - www.reddit.com](https://www.reddit.com/r/gamedev/comments/1pdq0g/key_combos_for_fighting_game/)
 
 # License
 
