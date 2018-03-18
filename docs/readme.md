@@ -153,15 +153,30 @@ If you have built the InputEvents properly, try to generate some InputEvent with
 
 ### Objective
 
-* We must eliminate the inputs of the volatile chain after a certain time.
+We must eliminate the inputs of the volatile chain after a certain time.
 * Iterate between all the InputEvents stored in event_chain and compare the timer of those inputs with "GENERIC_TIME_LIMIT".
 * Delete those that go over time.
+* Stop the time of the previous input event just before the next one is generated.
 
 ### Solution
 
-Ahora los inputs que generas deberían ser borrados al cabo de 2000 milliseconds (GENERIC_TIME_LIMIT).
+Now the inputs that you generate should be deleted after 2000 milliseconds (GENERIC_TIME_LIMIT) and now the inputevents will save the time that has occurred since they were born until another input has been entered. We just made the whole circular buffer!
 
 ![Example2](images/solvedTODO2.gif)
+
+## TODO 3
+
+### Objective
+
+So far so good! It's time to add some combos to the system. In this case there will be two: Shoryuken and Tatsumaki.
+* Generate an InputEvent to add it to the list of combos. Notice that the Combo class is ready to add InputEvents and add them to a vector. Check _Combo.h_!
+* Add the combo formed to the list of combos.
+
+### Solution
+
+The help label will indicate if you have correctly entered the combo in the list of combos.
+
+![Example3](images/solvedTODO3.png)
 
 Optional Homework for practicing!
 
