@@ -49,48 +49,30 @@ bool Combo::CheckForSolvedCombo(list<InputEvent*> event_chain) const{
 	bool comparison_did_fail = false;
 
 	while (it_event_chain != event_chain.end()) {
-
 		comparison_did_fail = false;
-
 		it_combo_to_check = this->input_events.begin();
-
 		while (it_combo_to_check != this->input_events.end()) {
-
-			//Is this combo input equal to event_chain ?
-			if (((*it_combo_to_check)->GetType() == (*it_event_chain)->GetType())) {
-
-				//Is this combo input valid for a time limit ?
-				if ((*it_combo_to_check)->GetTimeLimit() >= (*it_event_chain)->GetTimeSinceBorn()) {
-
+			//Is this combo input equal to event_chain ? //Is this combo input valid for a time limit ?
+			if (((*it_combo_to_check)->GetType() == (*it_event_chain)->GetType()) && 
+				(*it_combo_to_check)->GetTimeLimit() >= (*it_event_chain)->GetTimeSinceBorn()) {
 					//Is the combo completed?
 					if ((*it_combo_to_check) == this->input_events.back()) {
 						return true;
 					}
 					else { //Then continue checking the rest of inputs!
-
 						if ((*it_event_chain) == event_chain.back())
 							break;
-
 						it_combo_to_check++;
 						it_event_chain++;
 						continue;
 					}
-				}
-				else
-					comparison_did_fail = true;
 			}
 			else
 				comparison_did_fail = true;
-
-			if (comparison_did_fail)
+			if (comparison_did_fail || (*it_event_chain) == event_chain.back())
 				break;
-
-			if ((*it_event_chain) == event_chain.back())
-				break;
-
 			it_event_chain++;
 		}
-
 		it_event_chain++;
 	}
 

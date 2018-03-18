@@ -54,7 +54,6 @@ private:
 	ctPerfTimer timer;
 	double time_limit = 0.0;
 	double time_since_born = 0.0;
-	
 
 };
 

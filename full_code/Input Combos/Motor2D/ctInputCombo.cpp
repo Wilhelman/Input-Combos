@@ -99,6 +99,7 @@ bool ctInputCombo::PreUpdate()
 
 			//TODO 5: Clean the volatile input chain after the combo is executed. There is already a function to do it!
 			this->CleanEventChain();
+
 			break;
 		}
 			
@@ -192,7 +193,7 @@ InputEvent* ctInputCombo::GetInputEventWithActionType(EventType type) {
 	//TODO 2: Stop the time of the previous input event just before the next one is generated.
 	///Hint: Check if the volatile event_chain is empty or not.
 	///Also remember that each InputEvent has a function that stops the time! Check InputEvent.h
-	if (event_chain.size() > 1) 
+	if (event_chain.size() > 0) 
 		event_chain.back()->StopTimer();
 
 	//TODO 1: Start the timer for the new InputEvent and call the constructor of the InputEvent class.

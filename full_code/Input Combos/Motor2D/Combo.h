@@ -33,6 +33,7 @@ public:
 	void LoadInputEvent(InputEvent* input_event);
 
 	// Compare the combo (this) with the volatile event_chain given by ctInputCombo | Return true if there is a total coincidence
+
 	bool Combo::CheckForSolvedCombo(list<InputEvent*> event_chain)const;
 
 private:
