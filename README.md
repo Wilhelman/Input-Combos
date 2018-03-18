@@ -17,10 +17,28 @@ _IMPORTANT: do not modify, change or add any folder or file as you might not be 
 
 ## Controls
 
-* Pad: Move through menus.
-* A: Choose option.
-* B: Go to previous menu.
-* Start: Open Pause menu.
+### Keyboard
+
+* UP: Up input event.
+* DOWN: Down input event.
+* RIGHT: Right input event.
+* LEFT: Left input event.
+* P: Punch input event.
+* K: Kick input event.
+
+### Gamepad
+
+* CROSS UP: Up input event.
+* CROSS DOWN: Down input event.
+* CROSS RIGHT: Right input event.
+* CROSS LEFT: Left input event.
+* X / Y: Punch input event.
+* A / B: Kick input event.
+
+### Combo list:
+
+* Shoryuken: RIGHT - DOWN - RIGHT - PUNCH
+* Tatsumaki: DOWN - LEFT - KICK
 
 ## Tools used
 * IDE: Microsoft Visual Studio 2017
@@ -31,10 +49,7 @@ _IMPORTANT: do not modify, change or add any folder or file as you might not be 
 * Code repository: GitHub
 * Others: Adobe Photoshop CS6
 
-## Credits for artwork, music/sound fx and fonts
+## Credits for artwork
 
 * Ripped Sprites:
-
-* Music:
-
-* Fonts:
+Ryu - Ripped by Grim - http://spritedatabase.net
