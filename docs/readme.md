@@ -178,8 +178,6 @@ The help label will indicate if you have correctly entered the combo in the list
 
 ![Example3](images/solvedTODO3.png)
 
-Optional Homework for practicing!
-
 ## TODO 4
 
 ### Objective
@@ -219,6 +217,11 @@ We didn't clean the volatile input chain, that was it!
 Now the function that compares the list of combos and the volatile chain does not make the player receive multi-calls, it only calls it once and then the temporary chain is eliminated.
 
 ![Example5](images/solvedTODO5.gif)
+
+## Optional Homework
+
+* How would you implement a grip combo typical of the fighting genre (A + B)?
+* Try to make a longer combo, say ten inputs. Should you delete the circular buffer? Maybe implement the system with a tree storage?
 
 # Performance
 
