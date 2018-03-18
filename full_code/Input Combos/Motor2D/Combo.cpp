@@ -78,7 +78,6 @@ bool Combo::CheckForSolvedCombo(list<InputEvent*> event_chain) const{
 				}
 				else
 					comparison_did_fail = true;
-
 			}
 			else
 				comparison_did_fail = true;
