@@ -86,20 +86,10 @@ bool ctInputCombo::PreUpdate()
 
 	bool ret = true;
 
-	//check for completed combo
-	vector<Combo*>::const_iterator it = combo_list.begin();
-
-	while (it != combo_list.end()) {
-
-		if ((*it)->CheckForSolvedCombo(this->event_chain)) {
-			App->entities->GetPlayer()->OnComboCompleted((*it)->GetType());
-			this->CleanEventChain();
-			break;
-		}
-			
-		it++;
-
-	}
+	//TODO 4.2: Iterate between all the combos in the list.
+	/// For each combo check if the combo has been completed (Combo's function)
+	/// In case the combo is completed, call the function "App-> entities-> GetPlayer () -> OnComboCompleted ()" and pass the combo type.
+	/// To verify that it works, do one of the two combos.The controls are in the readme.
 
 	return ret;
 }

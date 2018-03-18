@@ -35,13 +35,25 @@ ComboType Combo::GetType()const {
 
 bool Combo::CheckForSolvedCombo(list<InputEvent*> event_chain) const{
 
+	//TODO 4.1: Find if there is a match between the list of events in the combo(this->input_events) and the volatile chain(event_chain).
+	///Hints: You must iterate both lists and ask:
+	/// * Is this combo input equal to event_chain ?
+	/// * Is this combo input valid for a time limit ?
+	/// * Is the combo completed ?
+	/// If all the answers are yes, the combo has been performed correctly.
+	/// Obviously you have to control the denials!
+
 	list<InputEvent*>::const_iterator it_event_chain = event_chain.begin();
 	vector<InputEvent*>::const_iterator it_combo_to_check = this->input_events.begin();
 
+	bool comparison_did_fail = false;
+
 	while (it_event_chain != event_chain.end()) {
 
+		comparison_did_fail = false;
+
 		it_combo_to_check = this->input_events.begin();
-		
+
 		while (it_combo_to_check != this->input_events.end()) {
 
 			//Is this combo input equal to event_chain ?
@@ -64,13 +76,15 @@ bool Combo::CheckForSolvedCombo(list<InputEvent*> event_chain) const{
 						continue;
 					}
 				}
-				else {
-					break;
-				}
+				else
+					comparison_did_fail = true;
+
 			}
-			else {
+			else
+				comparison_did_fail = true;
+
+			if (comparison_did_fail)
 				break;
-			}
 
 			if ((*it_event_chain) == event_chain.back())
 				break;
