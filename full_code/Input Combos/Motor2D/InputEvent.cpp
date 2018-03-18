@@ -25,7 +25,10 @@ double InputEvent::GetTimer()const {
 }
 
 double InputEvent::GetTimeSinceBorn()const {
-	return this->time_since_born;
+	if (time_since_born == 0.0)
+		return this->timer.ReadMs();
+	else
+		return this->time_since_born;
 }
 
 double InputEvent::GetTimeLimit()const {
