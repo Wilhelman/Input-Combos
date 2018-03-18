@@ -157,30 +157,30 @@ bool ctKenStageScene::Update(float dt)
 		switch (tmp_type)
 		{
 		case RIGHT:
-			App->render->DrawLine(x_pos, y_pos + 15, x_pos + 30, y_pos + 15, 255, 0, 0, 255, false);
-			App->render->DrawLine(x_pos + 30, y_pos + 15, x_pos + 15, y_pos + 30, 255, 0, 0, 255, false);
-			App->render->DrawLine(x_pos + 30, y_pos + 15, x_pos + 15, y_pos, 255, 0, 0, 255, false);
+			App->render->DrawLine(x_pos, y_pos + 15, x_pos + 30, y_pos + 15, 0, 255, 0, 255, false);
+			App->render->DrawLine(x_pos + 30, y_pos + 15, x_pos + 15, y_pos + 30, 0, 255, 0, 255, false);
+			App->render->DrawLine(x_pos + 30, y_pos + 15, x_pos + 15, y_pos, 0, 255, 0, 255, false);
 			break;
 		case LEFT:
-			App->render->DrawLine(x_pos, y_pos + 15, x_pos + 30, y_pos + 15, 255, 0, 0, 255, false);
-			App->render->DrawLine(x_pos, y_pos + 15, x_pos + 15, y_pos+30, 255, 0, 0, 255, false);
-			App->render->DrawLine(x_pos, y_pos + 15, x_pos + 15, y_pos, 255, 0, 0, 255, false);
+			App->render->DrawLine(x_pos, y_pos + 15, x_pos + 30, y_pos + 15, 0, 255, 0, 255, false);
+			App->render->DrawLine(x_pos, y_pos + 15, x_pos + 15, y_pos+30, 0, 255, 0, 255, false);
+			App->render->DrawLine(x_pos, y_pos + 15, x_pos + 15, y_pos, 0, 255, 0, 255, false);
 			break;
 		case UP:
-			App->render->DrawLine(x_pos + 15, y_pos, x_pos + 15, y_pos + 30, 255, 0, 0, 255, false);
-			App->render->DrawLine(x_pos, y_pos + 15, x_pos + 15, y_pos, 255, 0, 0, 255, false);
-			App->render->DrawLine(x_pos + 30, y_pos + 15, x_pos + 15, y_pos, 255, 0, 0, 255, false);
+			App->render->DrawLine(x_pos + 15, y_pos, x_pos + 15, y_pos + 30, 0, 255, 0, 255, false);
+			App->render->DrawLine(x_pos, y_pos + 15, x_pos + 15, y_pos, 0, 255, 0, 255, false);
+			App->render->DrawLine(x_pos + 30, y_pos + 15, x_pos + 15, y_pos, 0, 255, 0, 255, false);
 			break;
 		case DOWN:
-			App->render->DrawLine(x_pos + 15, y_pos, x_pos + 15, y_pos + 30, 255, 0, 0, 255, false);
-			App->render->DrawLine(x_pos, y_pos + 15, x_pos + 15, y_pos + 30, 255, 0, 0, 255, false);
-			App->render->DrawLine(x_pos+30, y_pos + 15, x_pos + 15, y_pos + 30, 255, 0, 0, 255, false);
+			App->render->DrawLine(x_pos + 15, y_pos, x_pos + 15, y_pos + 30, 0, 255, 0, 255, false);
+			App->render->DrawLine(x_pos, y_pos + 15, x_pos + 15, y_pos + 30, 0, 255, 0, 255, false);
+			App->render->DrawLine(x_pos+30, y_pos + 15, x_pos + 15, y_pos + 30, 0, 255, 0, 255, false);
 			break;
 		case PUNCH:
 			App->render->DrawQuad({ x_pos,y_pos,30,30 }, 255, 0, 0, 255, false, false);
 			break;
 		case KICK:
-			App->render->DrawCircle(x_pos + 15, y_pos + 15, 15, 255, 0, 0, 255);
+			App->render->DrawCircle(x_pos + 15, y_pos + 15, 15, 0, 0, 255, 255);
 			break;
 		case NO_EVENT_TYPE:
 			break;
