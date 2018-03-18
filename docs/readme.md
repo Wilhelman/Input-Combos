@@ -164,7 +164,7 @@ I have captured the time by iteration of the input combo system module using _Br
 
 [Devs - handle tons of inputs - www.reddit.com](https://www.reddit.com/r/gamedev/comments/1yu4px/how_to_properly_handle_tons_of_inputs_in_a/)
 
-[Commercial indie - What do we do when the combo is completed? - www.reddit.com] (https://www.reddit.com/r/gamedev/comments/1iw22v/buffered_input_like_that_found_in_fighting_games/)
+[Commercial indie - What do we do when the combo is completed? - www.reddit.com](https://www.reddit.com/r/gamedev/comments/1iw22v/buffered_input_like_that_found_in_fighting_games/)
 
 [Use of queue storage for inputs - shivansite.wordpress.com](https://shivansite.wordpress.com/2013/11/13/using-a-queue-for-user-input-events/)
 
