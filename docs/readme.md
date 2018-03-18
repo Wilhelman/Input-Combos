@@ -118,6 +118,10 @@ In case of finding a match, we will eliminate or not the list of our last events
 
 Since in a fight / beat em 'up genre the input combo system becomes more complex due to the time factor between events, we are going to create a combo system similar to the one that a videogame of this genre would use, although it will be ready to adapt to any other combo system in an easy way.
 
+Al final de los pasos tendremos un resultado como este:
+
+![Example final](images/final.gif)
+
 First let's locate, all the magic of this system will occur in the folder _InputComboSystem_. In this folder we'll find three classes:
 
 * **Combo**: In this class we will define and load all the necessary inputs to form a combo. From this class we will also check if a combo has been solved or not.
