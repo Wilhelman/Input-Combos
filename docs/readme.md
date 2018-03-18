@@ -5,17 +5,17 @@ Video Games by UPC at CITM](https://www.citm.upc.edu/ing/estudis/graus-videojocs
 subject Project 2, under supervision of lecturer
 [Ricard Pillosu](https://es.linkedin.com/in/ricardpillosu).
 
-## **Intro to the problem** 
+# **Intro to the problem** 
 
 An input combo system can vary greatly from one video game to another. That's why we have not established a fixed system to follow when we're developing a system for our video game.
 In this guide we will investigate about the input combos system that some video games have developed, we will discuss the different techniques that can be applied and, finally, we will make step by step our input system combo.
 My intention is to make the system as flexible and complete as possible, which can be adapted to any project with a few simple changes. All the development exposed on this page has been done from scratch with techniques developed from the research done before this guide.
 
-## Different approaches by different games
+# Different approaches by different games
 
 First let's analyze some games that use a input combo system significantly different between them. In this way we can distinguish some key parts of the system more easily.
 
-### Street Fighter
+## Street Fighter
 
 ![Street Fighter Example](images/street_fighter_example.gif)
 
@@ -27,7 +27,7 @@ In Street Fighter, the user is able to perform a variety of combos already defin
 * To make a combo it is not enough to press a defined series of keys correctly, it must be in correct timing and in a limited time.
 * The pool of possible inputs is not excessively long.
 
-### Heavy Rain
+## Heavy Rain
 
 ![Heavy Rain Example](images/heavy_rain_example.gif)
 
@@ -37,11 +37,11 @@ In Heavy Rain they usually use a very interesting input combo system:
 * The system stores the events entered by the user and allows you to continue the combo (showing in this case) the new event key to follow.
 * The system constantly checks that you are keeping the keys already pressed without taking into account how long it takes to press the next one.
 
-## Description in detail
+# Description in detail
 
 In all the titles that use an input combo system, they use a vector/list or tree (difference explained in detail below) to store the last inputs introduced by the user.
 
-### Input Storage
+## Input Storage
 
 * Vector/List:
 
@@ -94,7 +94,7 @@ _If the tree gets an incorrect input (red mark), the previously stored events ar
 _If the end of the tree is reached, the combo will be made and the temporary events will be cleaned_
 
 
-### Circular Buffer
+## Circular Buffer
 
 As we already know the memory is not unlimited and, therefore, storage is usually carried out using a circular buffer system that keeps the most recent inputs in memory.
 In this way, every time a new input is introduced (and therefore the oldest one is deleted) it is checked from the first found event to the last one created and then look for a match between the chain of inputs and one of our combos.
@@ -110,11 +110,11 @@ _The volatile chain with three inputs_
 
 _The condition of time has caused input "A" to be eliminated. While another input "B" has entered_
 
-### Resolution of the combo
+## Resolution of the combo
 
 In case of finding a match, we will eliminate or not the list of our last events and the appropriate movement or action can be carried out by means of a finite state machine.
 
-## Our approach step by step
+# Our approach step by step
 
 Since in a fight / beat em 'up genre the input combo system becomes more complex due to the time factor between events, we are going to create a combo system similar to the one that a videogame of this genre would use, although it will be ready to adapt to any other combo system in an easy way.
 
@@ -131,7 +131,7 @@ First let's locate, all the magic of this system will occur in the folder _Input
 * **ctInput Combo**: The core of the system. From this class we will collect the inputs, and we will use the two previous classes so that everything works.
 
 
-### TODO 1
+## TODO 1
 
 
 
@@ -140,7 +140,7 @@ RESOLVED TODO 1: mimimi
 
 Optional Homework for practicing!
 
-## Performance
+# Performance
 
 I have captured the time by iteration of the input combo system module using _Brofiler_. Specifically, the Preupdate and the Postupdate of the iteration.
 
@@ -152,17 +152,30 @@ I have captured the time by iteration of the input combo system module using _Br
 
 ![preupdate final](images/input_and_delete_ms_brofiler.png)
 
-## Ways to improve
+# Ways to improve
 
 * **Controlled Iteration**: In the system of this guide, the input combo module is implemented from the beginning to the cycles of the application. This is not recommended at all, it should be activated or deactivated according to the needs of the user.
 * **Comparison of combos by recursion**: As has already been shown in the performance, the cost of comparing combos can be improved with a better matching detection system which consumes less time, that's why I think it can be totally viable and that it can improve performance using the recursion in the comparison between chains. Another solution may be to develop the tree system since unnecessary comparisons will be reduced only if few predefined combos are used.
 * **Use of callbacks**: In this guide we have developed some actions for the combos pretty rudimentary. We call a method housed in the player class that tells you what the combo is. In the future this method of warning may not be viable since according to our needs we will need to notify more modules at once as soon as a combo is completed. That's why I recommend using a system of listeners and callbacks associated with the module input combo.
 
-## References
+# References
 
-references about the project
+_Devs - talks about trees_
+https://www.gamedev.net/forums/topic/581793-input-sequences-for-fighting-game-combos/
 
-## License
+_Devs - handle tons of inputs_
+https://www.reddit.com/r/gamedev/comments/1yu4px/how_to_properly_handle_tons_of_inputs_in_a/
+
+_Commercial indie - What do we do when the combo is completed?_
+https://www.reddit.com/r/gamedev/comments/1iw22v/buffered_input_like_that_found_in_fighting_games/
+
+_Use of queue storage for inputs_
+https://shivansite.wordpress.com/2013/11/13/using-a-queue-for-user-input-events/
+
+_Devs - talking about ghosting and rollover_
+https://www.reddit.com/r/gamedev/comments/1pdq0g/key_combos_for_fighting_game/
+
+# License
 
 ~~~~~~~~~~~~~~~
 
