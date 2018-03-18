@@ -180,6 +180,40 @@ The help label will indicate if you have correctly entered the combo in the list
 
 Optional Homework for practicing!
 
+## TODO 4
+
+### Objective
+
+We arrived at the most complicated part, but if you have arrived here, you will surely achieve it! 
+
+* Find if there is a match between the list of events in the combo(this->input_events) and the volatile chain(event_chain)
+* Hints: You must iterate both lists and ask:
+  * Is this combo input equal to event_chain ?
+  * Is this combo input valid for a time limit ?
+  * Is the combo completed ?
+If all the answers are yes, the combo has been performed correctly. Obviously you have to control the denials!
+* Iterate between all the combos in the list
+* In case the combo is completed, call the function _"App->entities->GetPlayer()->OnComboCompleted()"_ and pass the combo type.
+To verify that it works, do one of the two combos.The controls are in the readme.
+
+### Solution
+
+If the comparison has been made correctly, the combo movement will be executed. But wait a second... something is wrong.
+
+![Example4](images/solvedTODO4.gif)
+
+## TODO 5
+
+### Objective
+
+We didn't clean the volatile input chain, that was it!
+
+* Clean the volatile input chain after the combo is executed. There is already a function to do it!
+
+### Solution
+
+![Example5](images/solvedTODO5.gif)
+
 # Performance
 
 I have captured the time by iteration of the input combo system module using _Brofiler_. Specifically, the Preupdate and the Postupdate of the iteration.
