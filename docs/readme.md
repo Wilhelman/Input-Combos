@@ -94,7 +94,7 @@ _If the tree gets an incorrect input (red mark), the previously stored events ar
 _If the end of the tree is reached, the combo will be made and the temporary events will be cleaned_
 
 
-### Buffer circular
+### Circular Buffer
 
 As we already know the memory is not unlimited and, therefore, storage is usually carried out using a circular buffer system that keeps the most recent inputs in memory.
 In this way, every time a new input is introduced (and therefore the oldest one is deleted) it is checked from the first found event to the last one created and then look for a match between the chain of inputs and one of our combos.
@@ -118,9 +118,9 @@ In case of finding a match, we will eliminate or not the list of our last events
 
 Since in a fight / beat em 'up genre the input combo system becomes more complex due to the time factor between events, we are going to create a combo system similar to the one that a videogame of this genre would use, although it will be ready to adapt to any other combo system in an easy way.
 
-Al final de los pasos tendremos un resultado como este:
-
 ![Example final](images/final.gif)
+
+_At the end of the steps we will have a result like this_
 
 First let's locate, all the magic of this system will occur in the folder _InputComboSystem_. In this folder we'll find three classes:
 
@@ -140,13 +140,23 @@ RESOLVED TODO 1: mimimi
 
 Optional Homework for practicing!
 
-## Performance and ways to improve
+## Performance
 
-ms that is going all the module
+I have captured the time by iteration of the input combo system module using _Brofiler_. Specifically, the Preupdate and the Postupdate of the iteration.
 
-* App.inputcombo
+* **Preupdate**: It is the block of code that compares all predefined combos with the volatile input chain. It is the section that consumes the most time in the whole system, specifically up to 0.036 milliseconds. It must be said that there are only two combos predefined in the system and that it is only used when there is some input in the volatile chain.
 
-* Callbacks
+![preupdate final](images/combo_comparison_ns_brofiler.png)
+
+* **Postupdate**: In this block, the inputs are received and subsequently those that are outside the circular buffer are eliminated. It has an approximate cost of 0.001 milliseconds, so it is not subject to improvement.
+
+![preupdate final](images/input_and_delete_ms_brofiler.png)
+
+## Ways to improve
+
+* **Controlled Iteration**: In the system of this guide, the input combo module is implemented from the beginning to the cycles of the application. This is not recommended at all, it should be activated or deactivated according to the needs of the user.
+* **Comparison of combos by recursion**: As has already been shown in the performance, the cost of comparing combos can be improved with a better matching detection system which consumes less time, that's why I think it can be totally viable and that it can improve performance using the recursion in the comparison between chains. Another solution may be to develop the tree system since unnecessary comparisons will be reduced only if few predefined combos are used.
+* **Use of callbacks**: In this guide we have developed some actions for the combos pretty rudimentary. We call a method housed in the player class that tells you what the combo is. In the future this method of warning may not be viable since according to our needs we will need to notify more modules at once as soon as a combo is completed. That's why I recommend using a system of listeners and callbacks associated with the module input combo.
 
 ## References
 
