@@ -125,6 +125,11 @@ bool ctInputCombo::PostUpdate()
 		event_chain.push_back(tmp_input_event);
 	}
 
+	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || App->input->gamepad.CROSS_UP == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
+		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::UP);
+		event_chain.push_back(tmp_input_event);
+	}
+
 	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN || App->input->gamepad.X == GAMEPAD_STATE::PAD_BUTTON_DOWN || App->input->gamepad.Y == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
 		InputEvent* tmp_input_event = this->GetInputEventWithActionType(EventType::PUNCH);
 		event_chain.push_back(tmp_input_event);
@@ -204,6 +209,10 @@ void ctInputCombo::CleanEventChain() {
 	}
 
 	event_chain.clear();
+}
+
+list<InputEvent*> ctInputCombo::GetEventChain()const {
+	return this->event_chain;
 }
 
 // class Input Combos ---------------------------------------------------

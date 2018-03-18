@@ -7,10 +7,14 @@
 #include "ctRender.h"
 #include "ctWindow.h"
 #include "ctEntities.h"
+#include "ctInputCombo.h"
+#include "InputEvent.h"
 
 #include "ctKenStageScene.h"
 
 #include "ctFadeToBlack.h"
+
+#include <list>
 
 
 
@@ -138,6 +142,57 @@ bool ctKenStageScene::Update(float dt)
 	App->render->Blit(atlas_tex, 86, 24 + (int)foreground_pos, &(fedora_guy.GetCurrentFrame()), 0.92f); // fedora_guy animation
 	App->render->Blit(atlas_tex, 130, 24 + (int)foreground_pos, &(pink_guy.GetCurrentFrame()), 0.92f); // pink_guy animation
 	App->render->Blit(atlas_tex, 0, 170, &ground); //ground
+
+	list<InputEvent*> tmp_chain = App->input_combo->GetEventChain();
+
+	list<InputEvent*>::const_iterator it = tmp_chain.begin();
+
+	int x_pos = 50;
+	int y_pos = App->render->camera.y + App->render->camera.h - 22;
+
+	while (it != tmp_chain.end()) {
+
+		EventType tmp_type = (*it)->GetType();
+
+		switch (tmp_type)
+		{
+		case RIGHT:
+			App->render->DrawLine(x_pos, y_pos + 15, x_pos + 30, y_pos + 15, 255, 0, 0, 255, false);
+			App->render->DrawLine(x_pos + 30, y_pos + 15, x_pos + 15, y_pos + 30, 255, 0, 0, 255, false);
+			App->render->DrawLine(x_pos + 30, y_pos + 15, x_pos + 15, y_pos, 255, 0, 0, 255, false);
+			break;
+		case LEFT:
+			App->render->DrawLine(x_pos, y_pos + 15, x_pos + 30, y_pos + 15, 255, 0, 0, 255, false);
+			App->render->DrawLine(x_pos, y_pos + 15, x_pos + 15, y_pos+30, 255, 0, 0, 255, false);
+			App->render->DrawLine(x_pos, y_pos + 15, x_pos + 15, y_pos, 255, 0, 0, 255, false);
+			break;
+		case UP:
+			App->render->DrawLine(x_pos + 15, y_pos, x_pos + 15, y_pos + 30, 255, 0, 0, 255, false);
+			App->render->DrawLine(x_pos, y_pos + 15, x_pos + 15, y_pos, 255, 0, 0, 255, false);
+			App->render->DrawLine(x_pos + 30, y_pos + 15, x_pos + 15, y_pos, 255, 0, 0, 255, false);
+			break;
+		case DOWN:
+			App->render->DrawLine(x_pos + 15, y_pos, x_pos + 15, y_pos + 30, 255, 0, 0, 255, false);
+			App->render->DrawLine(x_pos, y_pos + 15, x_pos + 15, y_pos + 30, 255, 0, 0, 255, false);
+			App->render->DrawLine(x_pos+30, y_pos + 15, x_pos + 15, y_pos + 30, 255, 0, 0, 255, false);
+			break;
+		case PUNCH:
+			App->render->DrawQuad({ x_pos,y_pos,30,30 }, 255, 0, 0, 255, false, false);
+			break;
+		case KICK:
+			App->render->DrawCircle(x_pos + 15, y_pos + 15, 15, 255, 0, 0, 255);
+			break;
+		case NO_EVENT_TYPE:
+			break;
+		default:
+			break;
+		}
+
+		
+		x_pos += 50;
+		it++;
+	}
+
 
 	return true;
 }

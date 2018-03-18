@@ -40,6 +40,8 @@ bool Combo::CheckForSolvedCombo(list<InputEvent*> event_chain) const{
 
 	while (it_event_chain != event_chain.end()) {
 
+		it_combo_to_check = this->input_events.begin();
+		
 		while (it_combo_to_check != this->input_events.end()) {
 
 			//Is this combo input equal to event_chain ?
@@ -62,6 +64,12 @@ bool Combo::CheckForSolvedCombo(list<InputEvent*> event_chain) const{
 						continue;
 					}
 				}
+				else {
+					break;
+				}
+			}
+			else {
+				break;
 			}
 
 			if ((*it_event_chain) == event_chain.back())
