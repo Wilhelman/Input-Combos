@@ -161,19 +161,24 @@ I have captured the time by iteration of the input combo system module using _Br
 # References
 
 _Devs - talks about trees_
-https://www.gamedev.net/forums/topic/581793-input-sequences-for-fighting-game-combos/
+
+[https://www.gamedev.net/forums/topic/581793-input-sequences-for-fighting-game-combos/](https://www.gamedev.net/forums/topic/581793-input-sequences-for-fighting-game-combos/)
 
 _Devs - handle tons of inputs_
-https://www.reddit.com/r/gamedev/comments/1yu4px/how_to_properly_handle_tons_of_inputs_in_a/
+
+[https://www.reddit.com/r/gamedev/comments/1yu4px/how_to_properly_handle_tons_of_inputs_in_a/](https://www.reddit.com/r/gamedev/comments/1yu4px/how_to_properly_handle_tons_of_inputs_in_a/)
 
 _Commercial indie - What do we do when the combo is completed?_
-https://www.reddit.com/r/gamedev/comments/1iw22v/buffered_input_like_that_found_in_fighting_games/
+
+[https://www.reddit.com/r/gamedev/comments/1iw22v/buffered_input_like_that_found_in_fighting_games/](https://www.reddit.com/r/gamedev/comments/1iw22v/buffered_input_like_that_found_in_fighting_games/)
 
 _Use of queue storage for inputs_
-https://shivansite.wordpress.com/2013/11/13/using-a-queue-for-user-input-events/
+
+[https://shivansite.wordpress.com/2013/11/13/using-a-queue-for-user-input-events/](https://shivansite.wordpress.com/2013/11/13/using-a-queue-for-user-input-events/)
 
 _Devs - talking about ghosting and rollover_
-https://www.reddit.com/r/gamedev/comments/1pdq0g/key_combos_for_fighting_game/
+
+[https://www.reddit.com/r/gamedev/comments/1pdq0g/key_combos_for_fighting_game/](https://www.reddit.com/r/gamedev/comments/1pdq0g/key_combos_for_fighting_game/)
 
 # License
 
