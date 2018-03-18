@@ -118,7 +118,8 @@ In case of finding a match, we will eliminate or not the list of our last events
 
 # Our approach step by step
 
-Since in a fight / beat em 'up genre the input combo system becomes more complex due to the time factor between events, we are going to create a combo system similar to the one that a videogame of this genre would use, although it will be ready to adapt to any other combo system in an easy way.
+Since in a fight / beat em 'up genre the input combo system becomes more complex due to the time factor between events, we are going to create a combo system similar to the one that a videogame of this genre would use, although it will be ready to adapt to any other combo system in an easy way. 
+We are going to use vectors and lists to store predefined combos and to organize the volatile chain of events.
 
 ![Example final](images/final.gif)
 
@@ -142,12 +143,25 @@ First let's locate, all the magic of this system will occur in the folder _Input
 _Hint: You've to choose between two constructors, check InputEvent.h!_
 * Finally add the InputEvent to the volatile chain!
 
-**Solved TODO 1**
+### Solution
 
 If you have built the InputEvents properly, try to generate some InputEvent with the keyboard or gamepad (Controls in the readme). If everything works correctly, they will be displayed at the bottom of the screen.
 
 ![Example1](images/solvedTODO1.gif)
 
+## TODO 2
+
+### Objective
+
+* We must eliminate the inputs of the volatile chain after a certain time.
+* Iterate between all the InputEvents stored in event_chain and compare the timer of those inputs with "GENERIC_TIME_LIMIT".
+* Delete those that go over time.
+
+### Solution
+
+Ahora los inputs que generas deberían ser borrados al cabo de 2000 milliseconds (GENERIC_TIME_LIMIT).
+
+![Example2](images/solvedTODO2.gif)
 
 Optional Homework for practicing!
 
