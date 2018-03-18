@@ -53,13 +53,16 @@ The images below shows a combo list already predefined (the one above) that will
 
 _Volatile vector doesn't match with the predefined combo_
 
+
 ![Vector_List_Example](images/vectorexample.jpg)
 
 _Introced new input in the volatile vector_
 
+
 ![Vector_List_Example](images/completed_vector.jpg)
 
 _There is a match between volatile chain and the predefined combo_
+
 
 ![Vector_List_Example](images/vector_cleaned.jpg)
 
@@ -75,13 +78,16 @@ Also keep in mind that the combos system will only be aware of the input that fo
 
 _The tree is build around the combo/s predefined and wait for only the required input_
 
+
 ![Tree_Example](images/tree_2.jpg)
 
 _The tree has obtained a new event and stores it temporarily (green mark)_
 
+
 ![Tree_Example](images/tree_fail.jpg)
 
 _If the tree gets an incorrect input (red mark), the previously stored events are deleted_
+
 
 ![Tree_Example](images/tree_completed.jpg)
 
@@ -92,8 +98,17 @@ _If the end of the tree is reached, the combo will be made and the temporary eve
 
 As we already know the memory is not unlimited and, therefore, storage is usually carried out using a circular buffer system that keeps the most recent inputs in memory.
 In this way, every time a new input is introduced (and therefore the oldest one is deleted) it is checked from the first found event to the last one created and then look for a match between the chain of inputs and one of our combos.
-
 It should be noted that conditions can be added to eliminate events such as in a fighting game: the time between events.
+
+In the images below, the time buffer is shown graphically. The blue line marks the time (milliseconds) that must happen for the last input to be deleted. For another band the red mark indicates the time limit that has the following input to be considered as a combo with the previous ones.
+
+![Buffer_Example](images/buffer_1.jpg)
+
+_The volatile chain with three inputs_
+
+![Buffer_Example](images/buffer_2.jpg)
+
+_The condition of time has caused input "A" to be eliminated. While another input "B" has entered_
 
 ### Resolution of the combo
 
