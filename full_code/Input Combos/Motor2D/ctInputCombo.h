@@ -43,6 +43,9 @@ public:
 	// Get the volatile chain (only used for debug)
 	list<InputEvent*> GetEventChain()const;
 
+	// Get the combo list (only used for debug)
+	int GetComboListSize()const;
+
 private:
 	
 	// Generate one InputEvent of the given type (used for the incoming input)

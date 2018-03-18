@@ -94,7 +94,10 @@ bool ctKenStageScene::Start()
 
 	App->entities->SpawnEntity(450, 210, PLAYER);
 
-	//helper_01 = App->gui->AddUILabel(450, 210, "TODO 01", { 255,0,0,255 }, nullptr);
+	if (App->input_combo->GetComboListSize() > 0)
+		App->gui->AddUILabel(400, 10, "TODO 3 - Combos charged correctly!", { 0,255,0,255 }, nullptr);
+	else
+		App->gui->AddUILabel(400, 10, "TODO 3 - Combos not found!", { 255,0,0,255 }, nullptr);
 
 	return ret;
 }

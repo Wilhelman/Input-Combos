@@ -57,12 +57,14 @@ bool ctInputCombo::Awake(pugi::xml_node& conf)
 			else if (tmp_event == "KICK")
 				tmp_type = EventType::KICK;
 
-			InputEvent* tmp_input_event = new InputEvent(input_node.attribute("time_limit").as_double(), tmp_type);
+			//TODO 3.1: Generate an InputEvent to add it to the list of combos.
+			///Hint: The Combo class is ready to add InputEvents and add them to a vector. Check Combo.h!
 
-			tmp_combo->LoadInputEvent(this->GetInputEventWithActionTypeAndTimeLimit(input_node.attribute("time_limit").as_double(), tmp_type));
+
 		}
 
-		this->combo_list.push_back(tmp_combo);
+		//TODO 3.3: Add the combo formed to the list of combos.
+
 	}
 
 	return ret;
@@ -81,7 +83,6 @@ bool ctInputCombo::Start()
 // Called before all Updates
 bool ctInputCombo::PreUpdate()
 {
-	//BROFILER_CATEGORY("Combo comparison", Profiler::Color::Green);
 
 	bool ret = true;
 
@@ -106,7 +107,6 @@ bool ctInputCombo::PreUpdate()
 // Called after all Updates
 bool ctInputCombo::PostUpdate()
 {
-	//BROFILER_CATEGORY("Input event entry + delete ", Profiler::Color::Blue);
 
 	bool ret = true;
 
@@ -136,9 +136,12 @@ bool ctInputCombo::PostUpdate()
 		
 	}
 
-	/*-------CHECK TIME IN ORDER TO DELETE INPUT EVENTS-------*/
+	//TODO 2: We must eliminate the inputs of the volatile chain after a certain time.
+	///Hint: Iterate between all the InputEvents stored in event_chain and compare the 
+	///timer  of those inputs with "GENERIC_TIME_LIMIT".
+	///Delete those that go over time.
 
-	//TODO DELETE INPUT BUFER
+
 
 	//LOG("Event Chain size: %i", event_chain.size());
 
@@ -170,7 +173,10 @@ bool ctInputCombo::CleanUp()
 
 InputEvent* ctInputCombo::GetInputEventWithActionType(EventType type) {
 
-	//TODO 5? STOP TIMERS
+	//TODO 2: Stop the time of the previous input event just before the next one is generated.
+	///Hint: Check if the volatile event_chain is empty or not.
+	///Also remember that each InputEvent has a function that stops the time! Check InputEvent.h
+
 
 	//TODO 1: Start the timer for the new InputEvent and call the constructor of the InputEvent class.
 	///Hint: You've to choose between two constructors, check InputEvent.h!
@@ -181,8 +187,9 @@ InputEvent* ctInputCombo::GetInputEventWithActionType(EventType type) {
 }
 
 InputEvent* ctInputCombo::GetInputEventWithActionTypeAndTimeLimit(EventType type, double time_limit) {
+	//TODO 3.2: You've all the data required to call the second constructor.
 
-	return new InputEvent(time_limit, type);
+	return nullptr;
 }
 
 void ctInputCombo::CleanEventChain() {
@@ -198,6 +205,10 @@ void ctInputCombo::CleanEventChain() {
 
 list<InputEvent*> ctInputCombo::GetEventChain()const {
 	return this->event_chain;
+}
+
+int ctInputCombo::GetComboListSize()const {
+	return combo_list.size();
 }
 
 // class Input Combos ---------------------------------------------------

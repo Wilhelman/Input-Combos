@@ -73,13 +73,6 @@ private:
 
 	bool key_speed = false;
 
-	UIElement* helper_01 = nullptr;
-	UIElement* helper_02 = nullptr;
-	UIElement* helper_03 = nullptr;
-	UIElement* helper_04 = nullptr;
-	UIElement* helper_05 = nullptr;
-	UIElement* helper_06 = nullptr;
-
 };
 
 
