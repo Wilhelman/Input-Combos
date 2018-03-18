@@ -91,6 +91,8 @@ bool ctInputCombo::PreUpdate()
 	/// In case the combo is completed, call the function "App-> entities-> GetPlayer () -> OnComboCompleted ()" and pass the combo type.
 	/// To verify that it works, do one of the two combos.The controls are in the readme.
 
+	//TODO 5: Clean the volatile input chain after the combo is executed. There is already a function to do it!
+
 	return ret;
 }
 

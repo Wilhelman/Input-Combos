@@ -96,7 +96,9 @@ bool ctInputCombo::PreUpdate()
 
 		if ((*it)->CheckForSolvedCombo(this->event_chain)) {
 			App->entities->GetPlayer()->OnComboCompleted((*it)->GetType());
-			//this->CleanEventChain();
+
+			//TODO 5: Clean the volatile input chain after the combo is executed. There is already a function to do it!
+			this->CleanEventChain();
 			break;
 		}
 			
