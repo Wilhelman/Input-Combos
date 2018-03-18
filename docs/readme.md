@@ -168,7 +168,9 @@ I have captured the time by iteration of the input combo system module using _Br
 
 [Use of queue storage for inputs - shivansite.wordpress.com](https://shivansite.wordpress.com/2013/11/13/using-a-queue-for-user-input-events/)
 
-[Devs - talking about ghosting and rollover](https://www.reddit.com/r/gamedev/comments/1pdq0g/key_combos_for_fighting_game/)
+[Handle input events - www.stackoverflow.com](https://stackoverflow.com/questions/11894876/how-to-handle-keyboard-event-in-fighting-game-development)
+
+[Devs - talking about ghosting and rollover - www.reddit.com](https://www.reddit.com/r/gamedev/comments/1pdq0g/key_combos_for_fighting_game/)
 
 # License
 
