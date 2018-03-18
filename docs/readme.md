@@ -146,7 +146,7 @@ I have captured the time by iteration of the input combo system module using _Br
 
 * **Preupdate**: It is the block of code that compares all predefined combos with the volatile input chain. It is the section that consumes the most time in the whole system, specifically up to 0.036 milliseconds. It must be said that there are only two combos predefined in the system and that it is only used when there is some input in the volatile chain.
 
-![preupdate final](images/combo_comparison_ns_brofiler.png)
+![preupdate final](images/combo_comparison_ms_brofiler.png)
 
 * **Postupdate**: In this block, the inputs are received and subsequently those that are outside the circular buffer are eliminated. It has an approximate cost of 0.001 milliseconds, so it is not subject to improvement.
 
