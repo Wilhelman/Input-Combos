@@ -86,9 +86,13 @@ RESOLVED TODO 1: mimimi
 
 Optional Homework for practicing!
 
-## Ways to improve
+## Performance and ways to improve
 
-Explanation of any other improvements on the system
+ms that is going all the module
+
+* App.inputcombo
+
+* Callbacks
 
 ## References
 
