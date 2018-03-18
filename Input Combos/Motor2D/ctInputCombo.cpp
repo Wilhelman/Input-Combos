@@ -11,6 +11,8 @@
 #include "InputEvent.h"
 #include "Combo.h"
 
+#include "Brofiler\Brofiler.h"
+
 ctInputCombo::ctInputCombo() : ctModule()
 {
 	name = "input_combo";
@@ -79,6 +81,8 @@ bool ctInputCombo::Start()
 // Called before all Updates
 bool ctInputCombo::PreUpdate()
 {
+	BROFILER_CATEGORY("Combo comparison", Profiler::Color::Green);
+
 	bool ret = true;
 
 	//check for completed combo
@@ -102,6 +106,8 @@ bool ctInputCombo::PreUpdate()
 // Called after all Updates
 bool ctInputCombo::PostUpdate()
 {
+	BROFILER_CATEGORY("Input event entry + delete ", Profiler::Color::Blue);
+
 	bool ret = true;
 
 	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN || App->input->gamepad.CROSS_RIGHT == GAMEPAD_STATE::PAD_BUTTON_DOWN) {
