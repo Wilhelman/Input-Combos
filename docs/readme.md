@@ -135,6 +135,7 @@ First let's locate, all the magic of this system will occur in the folder _Input
 
 * **ctInput Combo**: The core of the system. From this class we will collect the inputs, and we will use the two previous classes so that everything works.
 
+[Click here to download the project](https://github.com/Wilhelman/Input-Combos/archive/master.zip)
 
 ## TODO 1
 
