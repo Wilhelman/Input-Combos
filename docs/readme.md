@@ -178,7 +178,7 @@ So far so good! It's time to add some combos to the system. In this case there w
 
 The help label will indicate if you have correctly entered the combo in the list of combos.
 
-![Example3](images/solvedTODO3.png)
+![Example3](images/solvedTODO3_new.png)
 
 ## TODO 4
 
