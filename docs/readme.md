@@ -121,6 +121,8 @@ In case of finding a match, we will eliminate or not the list of our last events
 Since in a fight / beat em 'up genre the input combo system becomes more complex due to the time factor between events, we are going to create a combo system similar to the one that a videogame of this genre would use, although it will be ready to adapt to any other combo system in an easy way. 
 We are going to use vectors and lists to store predefined combos and to organize the volatile chain of events.
 
+[Cick here to download the last release](https://github.com/Wilhelman/Input-Combos/releases/download/v1.0/InputComboSystem.zip)
+
 ![Example final](images/final.gif)
 
 _At the end of the steps we will have a result like this_
