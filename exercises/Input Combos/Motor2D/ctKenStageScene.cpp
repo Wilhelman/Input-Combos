@@ -84,7 +84,7 @@ bool ctKenStageScene::Start()
 	LOG("KEN STAGE start!");
 
 	if (!App->audio->PlayMusic("audio/music/ken.ogg")) {
-		ret = false;
+		//ret = false;
 		LOG("Error playing music in ctKenStageScene Start");
 	}
 
